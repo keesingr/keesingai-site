@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+  image?: string;
+}
+
+const { title, id, image } = Astro.props;
+---
+
+<div class:list={["section-header", { "has-image": image }]}>
+
+  {image && (
+    <img
+      src={image}
+      alt=""
+      class="section-header-image"
+      aria-hidden="true"
+    />
+  )}
+
+  <div class="section-header-content">
+    <h2 id={id}>{title}</h2>
+    <div class="section-rule"></div>
+  </div>
+
+</div>

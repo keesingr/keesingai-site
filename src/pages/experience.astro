@@ -1,0 +1,354 @@
+---
+import Header from "../components/Header.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Experience | Ron Keesing"
+  description="More than twenty years of experience leading enterprise AI, integrating advanced technology, and advancing applied AI research."
+>
+  <Header activePage="experience" />
+
+  <main>
+    <section class="page-introduction">
+      <div class="site-container">
+        <h1>Experience</h1>
+
+        <p>
+          For more than twenty years, I have helped organizations apply
+          artificial intelligence to complex, mission-critical challenges. My
+          experience spans advanced AI research, enterprise technology
+          leadership, and executive responsibility for AI strategy, governance,
+          and transformation. Throughout that journey, the focus has remained
+          consistent: translating emerging AI capabilities into trusted
+          operational systems that deliver measurable results.
+        </p>
+      </div>
+    </section>
+
+    <div class="experience-sections site-container">
+      <section
+        class="experience-section"
+        aria-labelledby="enterprise-ai-heading"
+      >
+        <header class="section-introduction">
+          <h2 id="enterprise-ai-heading">Leading Enterprise AI</h2>
+
+          <p class="section-subtitle">
+            Establishing enterprise AI strategy, governance, and organizational
+            transformation.
+          </p>
+
+          <p class="section-summary">
+            As Leidos' first Chief AI Officer, I established the enterprise AI
+            operating model and led AI strategy across a $17B Fortune 300
+            company serving defense, intelligence, healthcare, energy,
+            transportation, and civilian agencies. Responsibilities included
+            enterprise AI strategy, Trusted AI governance, AI investment,
+            executive advising, workforce enablement, and deployment of
+            generative and agentic AI at scale.
+          </p>
+        </header>
+
+        <div class="highlights">
+          <h3>Highlights</h3>
+
+          <ul>
+            <li>
+              Created the enterprise AI operating model spanning five business
+              sectors and corporate functions.
+            </li>
+
+            <li>
+              Directed an annual AI investment portfolio of approximately
+              $40 million.
+            </li>
+
+            <li>
+              Established the company's Trusted AI governance framework and
+              chaired the Enterprise AI Governance Board.
+            </li>
+
+            <li>
+              Guided enterprise adoption of generative and agentic AI, enabling
+              secure deployment across highly regulated environments.
+            </li>
+
+            <li>
+              Reported AI strategy, risk, and progress to executive leadership
+              and the Board of Directors.
+            </li>
+
+            <li>
+              Helped deliver approximately $50 million in annual AI-enabled
+              value across customer programs and internal operations.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        class="experience-section"
+        aria-labelledby="technology-integration-heading"
+      >
+        <header class="section-introduction">
+          <h2 id="technology-integration-heading">
+            Leading Technology Integration
+          </h2>
+
+          <p class="section-subtitle">
+            Integrating and delivering AI, cyber, software, and digital
+            modernization to solve complex mission challenges.
+          </p>
+
+          <p class="section-summary">
+            Before becoming Chief AI Officer, I spent five years building the
+            organizational and technical capabilities that enabled enterprise
+            AI transformation. I founded the Leidos AI Accelerator, later
+            established the Technology Integration organization, and led
+            multidisciplinary teams responsible for integrating AI, cyber,
+            software engineering, and digital modernization into enterprise
+            solutions and customer programs.
+          </p>
+        </header>
+
+        <div class="highlights">
+          <h3>Highlights</h3>
+
+          <ul>
+            <li>
+              Founded the Leidos AI Accelerator and built a team of more than
+              50 AI scientists, engineers, and solution architects.
+            </li>
+
+            <li>
+              Created the Technology Integration organization, growing it to
+              more than 250 scientists, engineers, and technologists.
+            </li>
+
+            <li>
+              Directed approximately $30 million annually in internal
+              technology investment.
+            </li>
+
+            <li>
+              Supported more than $40 billion in competitive pursuits by
+              integrating advanced technologies into enterprise solutions.
+            </li>
+
+            <li>
+              Accelerated the transition of generative AI from experimentation
+              to operational deployment across the company.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        class="experience-section"
+        aria-labelledby="ai-research-heading"
+      >
+        <header class="section-introduction">
+          <h2 id="ai-research-heading">Leading AI Research</h2>
+
+          <p class="section-subtitle">
+            Advancing artificial intelligence through applied research and
+            operational innovation.
+          </p>
+
+          <p class="section-summary">
+            Long before generative AI became mainstream, I led research and
+            development programs exploring machine learning, knowledge
+            discovery, autonomous systems, predictive analytics, and decision
+            support for some of the U.S. government's most demanding technical
+            organizations. These efforts established the technical foundation
+            that later informed my work leading enterprise AI.
+          </p>
+        </header>
+
+        <div class="highlights">
+          <h3>Representative areas of work</h3>
+
+          <ul>
+            <li>Machine learning and knowledge extraction</li>
+            <li>Knowledge graphs and semantic technologies</li>
+            <li>Autonomous systems and human-machine teaming</li>
+            <li>Predictive analytics and decision support</li>
+            <li>
+              AI applications for national security and scientific discovery
+            </li>
+          </ul>
+
+          <p class="organizations">
+            Programs supported organizations including DARPA, IARPA, DIA, DTRA,
+            SOCOM, ONR, and the U.S. Army.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+</MainLayout>
+
+<style>
+  .page-introduction {
+    padding:
+      clamp(3.5rem, 6vw, 5.5rem) 0
+      clamp(3.5rem, 6vw, 5rem);
+  }
+
+  .page-introduction h1 {
+    margin: 0 0 1.4rem;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2.7rem, 5vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  .page-introduction p {
+    max-width: 1040px;
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(1.08rem, 1.65vw, 1.25rem);
+    line-height: 1.72;
+  }
+
+  .experience-sections {
+    padding-bottom: clamp(5rem, 9vw, 8rem);
+  }
+
+  .experience-section {
+    display: grid;
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(320px, 0.85fr);
+    gap: clamp(3rem, 8vw, 7rem);
+    align-items: start;
+    padding:
+      clamp(3.5rem, 6vw, 5.5rem) 0
+      clamp(4rem, 7vw, 6rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .section-introduction {
+    min-width: 0;
+  }
+
+  .section-introduction h2 {
+    max-width: 760px;
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.7vw, 3.35rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+  }
+
+  .section-subtitle {
+    max-width: 780px;
+    margin: 0.9rem 0 0;
+    color: var(--muted);
+    font-family: var(--font-serif);
+    font-size: clamp(1.08rem, 1.6vw, 1.3rem);
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  .section-summary {
+    max-width: 800px;
+    margin: 2rem 0 0;
+    color: var(--text);
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+    line-height: 1.75;
+  }
+
+  .highlights {
+    padding-top: 0.35rem;
+  }
+
+  .highlights h3 {
+    margin: 0 0 1.25rem;
+    color: var(--muted);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .highlights ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .highlights li {
+    position: relative;
+    margin: 0;
+    padding:
+      0.95rem 0
+      0.95rem 1.35rem;
+    border-top: 1px solid var(--line);
+    color: var(--text);
+    font-size: clamp(0.96rem, 1.2vw, 1.04rem);
+    line-height: 1.55;
+  }
+
+  .highlights li:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .highlights li::before {
+    content: "";
+    position: absolute;
+    top: 1.55rem;
+    left: 0;
+    width: 0.35rem;
+    height: 0.35rem;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+
+  .organizations {
+    margin: 1.6rem 0 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .experience-section {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .highlights {
+      max-width: 780px;
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .page-introduction {
+      padding:
+        3rem 0
+        3.5rem;
+    }
+
+    .experience-section {
+      gap: 2rem;
+      padding:
+        3rem 0
+        4rem;
+    }
+
+    .section-summary {
+      margin-top: 1.6rem;
+    }
+
+    .highlights li {
+      padding-left: 1.15rem;
+    }
+  }
+</style>

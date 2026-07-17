@@ -1,0 +1,396 @@
+---
+import Header from "../components/Header.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+
+interface SpeakingItem {
+  title: string;
+  source: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  href?: string;
+  linkLabel?: string;
+  date?: string;
+}
+
+const upcomingAppearances: SpeakingItem[] = [
+  {
+    title: "Black Hat USA 2026 — AI Summit",
+    source: "Panel: Securing Agentic AI: New Roles, New Risks, New Operating Models",
+    description:
+      "A panel discussion exploring how agentic AI is reshaping cybersecurity, governance, and enterprise operating models, with leaders from across industry. Scheduled for August 4, 2026, as part of the AI Summit at Black Hat USA in Las Vegas.",
+    image: "/images/black-hat-2026-ai-summit.png",
+    imageAlt: "Black Hat USA AI Summit",
+    date: "August 4, 2026",
+    // Add the public event page when available.
+    // href: "https://...",
+    // linkLabel: "Event Details",
+  },
+  {
+    title: "MachineCon AI150 Awards",
+    source: "MachineCon",
+    description:
+      "Honored to be recognized among the AI150 and participating in MachineCon, which brings together executives leading enterprise AI adoption across industries.",
+    image: "/images/aim-media.png",
+    imageAlt: "MachineCon AI150 Awards",
+    // Add the event date and public page when confirmed.
+    // date: "Month Day, 2026",
+    // href: "https://...",
+    // linkLabel: "Event Details",
+  },
+];
+
+const selectedTalks: SpeakingItem[] = [
+  {
+    title: "Leading AI Transformation: A Chief AI Officer's Perspective",
+    source: "AWS Executive Insights with Tom Soderstrom",
+    description:
+      "A conversation about the evolving Chief AI Officer role, enterprise AI governance, organizational transformation, and leading AI adoption at enterprise scale.",
+    image: "/images/aws-chat.png",
+    imageAlt:
+      "Ron Keesing speaking with Tom Soderstrom for AWS Executive Insights",
+    href: "https://www.youtube.com/watch?v=LblTPS1LnLc",
+    linkLabel: "Watch Recording",
+  },
+  {
+    title: "Deploying AI in the Real World",
+    source: "WTOP Interview",
+    description:
+      "A discussion of how organizations are applying AI today, separating practical realities from hype, and what business leaders should understand as AI becomes part of everyday work.",
+    image: "/images/wtop-chat.png",
+    imageAlt: "Ron Keesing discussing artificial intelligence with WTOP",
+    href: "https://www.youtube.com/watch?v=65Bj0BbZcyY",
+    linkLabel: "Watch Recording",
+  },
+  {
+    title: "Building Generative AI that Works",
+    source: "Leidos Executive Interview",
+    description:
+      "A discussion of applying generative AI within complex mission environments and integrating emerging technologies into operational solutions.",
+    image: "/images/genai-chat.png",
+    imageAlt: "Ron Keesing discussing artificial intelligence at Leidos",
+    href: "https://www.youtube.com/watch?v=lmncOZlbUVQ",
+    linkLabel: "Watch Recording",
+  },
+
+];
+---
+
+<MainLayout
+  title="Speaking | Ron Keesing"
+  description="Selected talks, interviews, and upcoming appearances focused on enterprise AI strategy, trusted AI governance, and organizational transformation."
+>
+  <Header activePage="speaking" />
+
+  <main>
+    <section class="page-introduction">
+      <div class="site-container">
+        <h1>Speaking</h1>
+
+        <p>
+          I regularly speak with executive audiences, technology leaders,
+          policymakers, and practitioners about the opportunities and
+          challenges of applying artificial intelligence in complex
+          organizations. My talks focus on enterprise AI strategy, trusted AI
+          governance, organizational transformation, and the practical
+          realities of moving AI from experimentation into operational
+          capability.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="speaking-section upcoming-section site-container"
+      aria-labelledby="upcoming-heading"
+    >
+      <header class="section-heading">
+        <p class="section-label">Upcoming</p>
+        <h2 id="upcoming-heading">Upcoming Appearances</h2>
+      </header>
+
+      <div class="speaking-list">
+        {
+          upcomingAppearances.map((item) => (
+            <article class="speaking-item upcoming-item">
+              <div class="speaking-image">
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="speaking-content">
+                {item.date && <p class="item-date">{item.date}</p>}
+
+                <h3>{item.title}</h3>
+
+                <p class="item-source">{item.source}</p>
+
+                <p class="item-description">{item.description}</p>
+
+                {item.href && item.linkLabel && (
+                  <a
+                    class="item-link"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${item.linkLabel}: ${item.title}, opens in a new tab`}
+                  >
+                    {item.linkLabel}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section
+      class="speaking-section recordings-section site-container"
+      aria-labelledby="recordings-heading"
+    >
+      <header class="section-heading">
+        <h2 id="recordings-heading">Selected Talks &amp; Interviews</h2>
+      </header>
+
+      <div class="speaking-list">
+        {
+          selectedTalks.map((item) => (
+            <article class="speaking-item">
+              <div class="speaking-image">
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="speaking-content">
+                <h3>{item.title}</h3>
+
+                <p class="item-source">{item.source}</p>
+
+                <p class="item-description">{item.description}</p>
+
+                {item.href && item.linkLabel && (
+                  <a
+                    class="item-link"
+                    href={item.href}
+                    target={
+                      item.href.startsWith("http") ? "_blank" : undefined
+                    }
+                    rel={
+                      item.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                    aria-label={
+                      item.href.startsWith("http")
+                        ? `${item.linkLabel}: ${item.title}, opens in a new tab`
+                        : `${item.linkLabel}: ${item.title}`
+                    }
+                  >
+                    {item.linkLabel}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+</MainLayout>
+
+<style>
+  .page-introduction {
+    padding:
+      clamp(3.5rem, 6vw, 5.5rem) 0
+      clamp(3.5rem, 6vw, 5rem);
+  }
+
+  .page-introduction h1 {
+    margin: 0 0 1.4rem;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2.7rem, 5vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  .page-introduction p {
+    max-width: 980px;
+    margin: 0;
+    color: var(--text);
+    font-size: clamp(1.08rem, 1.65vw, 1.25rem);
+    line-height: 1.72;
+  }
+
+  .speaking-section {
+    padding-bottom: clamp(4.5rem, 8vw, 7rem);
+  }
+
+  .section-heading {
+    padding-top: clamp(2.5rem, 4.5vw, 4rem);
+    padding-bottom: clamp(1.8rem, 3vw, 2.75rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .upcoming-section .section-heading {
+    border-top: 3px solid var(--accent);
+  }
+
+  .section-label {
+    display: inline-block;
+    margin: 0 0 0.75rem;
+    padding: 0.28rem 0.55rem;
+    color: var(--navy);
+    background: rgb(44 131 197 / 0.12);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .section-heading h2 {
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.5vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+  }
+
+  .speaking-list {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .speaking-item {
+    display: grid;
+    grid-template-columns:
+      minmax(240px, 0.72fr)
+      minmax(0, 1.6fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+    padding: clamp(2rem, 4vw, 3.25rem) 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .upcoming-item {
+    padding-top: clamp(2.25rem, 4.5vw, 3.5rem);
+    padding-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
+  }
+
+  .speaking-image {
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: var(--white);
+  }
+
+  .speaking-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .speaking-content {
+    min-width: 0;
+  }
+
+  .item-date {
+    margin: 0 0 0.65rem;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.055em;
+    text-transform: uppercase;
+  }
+
+  .speaking-content h3 {
+    max-width: 820px;
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.55rem, 2.6vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.18;
+    letter-spacing: -0.018em;
+  }
+
+  .upcoming-item .speaking-content h3 {
+    font-size: clamp(1.7rem, 2.85vw, 2.45rem);
+  }
+
+  .item-source {
+    margin: 0.55rem 0 0;
+    color: var(--muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.045em;
+    line-height: 1.45;
+    text-transform: uppercase;
+  }
+
+  .item-description {
+    max-width: 800px;
+    margin: 1.25rem 0 0;
+    color: var(--text);
+    font-size: clamp(0.98rem, 1.25vw, 1.07rem);
+    line-height: 1.7;
+  }
+
+  .item-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-top: 1.5rem;
+    color: var(--accent);
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+
+  .item-link span {
+    transition: transform 150ms ease;
+  }
+
+  .item-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.22rem;
+  }
+
+  .item-link:hover span,
+  .item-link:focus-visible span {
+    transform: translateX(0.2rem);
+  }
+
+  @media (max-width: 800px) {
+    .speaking-item {
+      grid-template-columns: minmax(180px, 0.65fr) minmax(0, 1.35fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 650px) {
+    .page-introduction {
+      padding:
+        3rem 0
+        3.5rem;
+    }
+
+    .speaking-item {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .speaking-image {
+      max-width: 520px;
+    }
+  }
+</style>

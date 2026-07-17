@@ -1,0 +1,168 @@
+---
+import Header from "../components/Header.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Contact | Ron Keesing"
+  description="Get in touch regarding enterprise AI strategy, speaking, advisory work, and collaboration."
+>
+  <Header activePage="contact" />
+
+  <main>
+    <section class="contact-page">
+      <div class="site-container">
+
+        <div class="contact-header">
+          <h1>Contact</h1>
+
+          <p>
+            Thank you for visiting.
+          </p>
+
+          <p>
+            I welcome conversations with executives, technologists, public
+            leaders, and organizations interested in enterprise AI strategy,
+            trusted AI governance, organizational transformation, and the
+            practical application of emerging technologies.
+          </p>
+
+          <p>
+            Whether you'd like to learn more about my work, discuss a speaking
+            engagement, explore advisory, board, or selected consulting opportunities, or simply
+            continue the conversation, I'd be pleased to hear from you.
+          </p>
+        </div>
+
+        <div class="contact-details">
+
+          <div class="contact-row">
+            <div class="contact-label">
+              Email
+            </div>
+
+            <div class="contact-value">
+              <a href="mailto:ron@keesingai.com">
+                ron@keesingai.com
+              </a>
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-label">
+              LinkedIn
+            </div>
+
+            <div class="contact-value">
+              <a
+                href="https://www.linkedin.com/in/ronkeesing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                linkedin.com/in/ronkeesing
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+</MainLayout>
+
+<style>
+.contact-page {
+  padding:
+    clamp(4rem, 7vw, 6rem)
+    0
+    clamp(6rem, 10vw, 8rem);
+}
+
+.contact-header {
+  max-width: 760px;
+}
+
+.contact-header h1 {
+  margin: 0 0 2rem;
+
+  color: var(--ink);
+
+  font-family: var(--font-serif);
+  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.contact-header p {
+  margin: 0;
+
+  color: var(--text);
+
+  font-size: clamp(1.05rem, 1.5vw, 1.18rem);
+  line-height: 1.8;
+}
+
+.contact-header p + p {
+  margin-top: 1.5rem;
+}
+
+.contact-details {
+  margin-top: clamp(4rem, 7vw, 5rem);
+
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+
+  gap: 2rem;
+
+  padding: 1.5rem 0;
+
+  border-top: 1px solid var(--line);
+}
+
+.contact-row:first-child {
+  border-top: none;
+}
+
+.contact-label {
+  color: var(--muted);
+
+  font-size: .74rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.contact-value a {
+  color: var(--ink);
+
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-weight: 500;
+
+  text-decoration: none;
+}
+
+.contact-value a:hover,
+.contact-value a:focus-visible {
+  color: var(--accent);
+
+  text-decoration: underline;
+  text-underline-offset: .2rem;
+}
+
+@media (max-width: 600px) {
+
+  .contact-row {
+    grid-template-columns: 1fr;
+    gap: .5rem;
+  }
+
+}
+</style>

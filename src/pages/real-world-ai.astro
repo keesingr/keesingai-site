@@ -1,0 +1,827 @@
+---
+import Header from "../components/Header.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+
+const autonomyExamples = [
+  {
+    capability: "Space Autonomy",
+    examples: "NASA Deep Space 1 — Remote Agent",
+    referenceTitle: "Remote Agent Experiment Meets All Objectives",
+    referenceSource: "NASA Jet Propulsion Laboratory",
+    referenceUrl:
+      "https://www.jpl.nasa.gov/news/remote-agent-experiment-meets-all-objectives/",
+    referenceType: "Article",
+  },
+  {
+    capability: "Maritime Autonomy",
+    examples: "DARPA ACTUV, Sea Hunter family",
+    referenceTitle: "A.I., Captain: The Robotic Navy Ship of the Future",
+    referenceSource: "Fortune",
+    referenceUrl:
+      "https://fortune.com/longform/leidos-sea-hunter-ai-navy-ship/",
+    referenceType: "Feature",
+  },
+  {
+    capability: "Collaborative Autonomy",
+    examples: "DARPA Gremlins",
+    referenceTitle: "Gremlins Airborne Recovery Demonstration",
+    referenceSource: "DARPA",
+    referenceUrl: "https://www.youtube.com/watch?v=H4T6Vr4a1hY",
+    referenceType: "Video",
+  },
+  {
+    capability: "Next-Generation Maritime Systems",
+    examples: "Sea Archer, Sea Specter, Sea Dagger",
+    referenceTitle: "Maritime Systems",
+    referenceSource: "Leidos",
+    referenceUrl: "https://www.leidos.com/markets/maritime",
+    referenceType: "Portfolio",
+  },
+];
+
+const securityExamples = [
+  {
+    capability: "Cybersecurity",
+    examples:
+      "AI-enabled cyber defense, threat detection, and offensive cyber operations",
+    referenceTitle:
+      "MerlinX Introduces Cyber Autonomy to Offensive Operations in Cyberspace",
+    referenceSource: "Leidos",
+    referenceUrl:
+      "https://www.leidos.com/insights/merlinx-introduces-cyber-autonomy-offensive-operations-cyberspace",
+    referenceType: "Article",
+  },
+  {
+    capability: "Aviation Security",
+    examples: "Automated checkpoint and baggage screening",
+    referenceTitle:
+      "AI-Based Algorithms Elevate Airport Security Screening",
+    referenceSource: "Airports Council International–North America",
+    referenceUrl:
+      "https://airportscouncil.org/2026/03/24/ai-based-algorithms-elevate-airport-security-screening/",
+    referenceType: "Article",
+  },
+  {
+    capability: "Cargo & Border Security",
+    examples: "AI-assisted cargo inspection and non-intrusive screening",
+    referenceTitle: "Mezzo™",
+    referenceSource: "Leidos",
+    referenceUrl:
+      "https://www.leidos.com/markets/homeland/ports-borders/mezzo",
+    referenceType: "Portfolio",
+  },
+];
+
+const transportationExamples = [
+  {
+    capability: "Mission-Critical Software",
+    examples:
+      "AI-assisted software engineering for complex operational and mission systems",
+    referenceTitle:
+      "Leveraging AI to Tackle Big Challenges in Intelligence, Software Development, and Fraud Protection",
+    referenceSource: "Leidos",
+    referenceUrl:
+      "https://www.leidos.com/insights/leveraging-ai-tackle-big-challenges-intelligence-software-development-and-fraud-protection",
+    referenceType: "Article",
+  },
+  {
+    capability: "Aviation Operations",
+    examples:
+      "Air traffic management, arrival sequencing, and operational decision support",
+    referenceTitle: "Intelligent Approach",
+    referenceSource: "NATS",
+    referenceUrl:
+      "https://www.nats.aero/our-solutions/intelligent-approach/",
+    referenceType: "Solution",
+  },
+  {
+    capability: "Logistics & Supply Chains",
+    examples:
+      "Supply chain optimization, planning, and operational decision support",
+    referenceTitle: "Digital Supply Chain",
+    referenceSource: "YouTube",
+    referenceUrl:
+      "https://www.youtube.com/watch?v=bmeB21luc_c&t=1s",
+    referenceType: "Video",
+  },
+];
+const infrastructureExamples = [
+  {
+    capability: "Energy Systems",
+    examples:
+      "Grid optimization, resilience, forecasting, and operational decision support",
+    referenceTitle:
+      "How AI Is Transforming the Electric Grid",
+    referenceSource: "Leidos",
+    referenceUrl:
+      "https://www.leidos.com/insights/how-ai-transforming-electric-grid",
+    referenceType: "Article",
+  },
+  {
+    capability: "Industrial Operations",
+    examples:
+      "AI-enabled inspection, monitoring, and operational automation",
+    referenceTitle:
+      "Innovation Technology",
+    referenceSource: "Leidos",
+    referenceUrl:
+      "https://www.leidos.com/markets/aviation/security-detection/innovation-technology",
+    referenceType: "Technology",
+  },
+  {
+    capability: "Disaster Response",
+    examples:
+      "Agentic AI supporting emergency management, situational awareness, and coordinated response",
+    referenceTitle:
+      "Leidos Uses AI Agents to Improve Disaster Response",
+    referenceSource: "NVIDIA",
+    referenceUrl:
+      "https://www.nvidia.com/en-us/case-studies/leidos-uses-ai-agents-to-improve-disaster-response/",
+    referenceType: "Case Study",
+  },
+];
+const healthcareExamples = [
+  {
+    capability: "Biomedical Research",
+    examples:
+      "Knowledge extraction, scientific discovery, and biomedical reasoning",
+    referenceTitle: "DARPA's Big Mechanism Program",
+    referenceSource: "ResearchGate",
+    referenceUrl:
+      "https://www.researchgate.net/publication/280221896_DARPA's_Big_Mechanism_program",
+    referenceType: "Paper",
+  },
+  {
+    capability: "Medical Imaging",
+    examples:
+      "AI-assisted disease detection and diagnostic image analysis",
+    referenceTitle:
+      "Leidos and UPitt Collaborate to Democratize AI Disease Detection",
+    referenceSource: "Healthcare IT News",
+    referenceUrl:
+      "https://www.healthcareitnews.com/news/leidos-and-upitt-collaborate-democratize-ai-disease-detection",
+    referenceType: "Article",
+  },
+  {
+    capability: "Healthcare Operations",
+    examples:
+      "Clinical workflow optimization, document intelligence, and improved access to care",
+    referenceTitle:
+      "How Emerging Tech is Improving Veteran Health Care, Access",
+    referenceSource: "GovCIO Media",
+    referenceUrl:
+      "https://govciomedia.com/how-emerging-tech-is-improving-veteran-health-care-access/",
+    referenceType: "Article",
+  },
+];
+const decisionExamples = [
+  {
+    capability: "Command & Control",
+    examples:
+      "AI-assisted battle management, mission planning, and human-machine teaming",
+    referenceTitle:
+      "AlphaMosaic: AI-Powered Battle Management Takes Flight",
+    referenceSource: "Leidos",
+    referenceUrl:
+      "https://www.leidos.com/insights/alphamosaic-ai-powered-battle-management-takes-flight",
+    referenceType: "Article",
+  },
+  {
+    capability: "Predictive Analytics",
+    examples:
+      "Forecasting, talent analytics, and operational decision support",
+    referenceTitle:
+      "Leidos R2View: Revolutionizing Cleared Recruitment with Proven AI",
+    referenceSource: "Leidos",
+    referenceUrl:
+      "https://www.leidos.com/insights/leidos-r2view-revolutionizing-cleared-recruitment-proven-ai",
+    referenceType: "Article",
+  },
+  {
+    capability: "Intelligence Analysis",
+    examples:
+      "AI-enabled intelligence fusion, analytic tradecraft, and mission support",
+    referenceTitle:
+      "Leidos Awarded $143M DIA Technology Platform Contract",
+    referenceSource: "Leidos",
+    referenceUrl:
+      "https://www.leidos.com/insights/leidos-awarded-143m-dia-technology-platform-contract",
+    referenceType: "Article",
+  },
+];
+---
+
+<MainLayout
+  title="Real-World AI | Ron Keesing"
+  description="Selected examples of AI deployed in operational environments where trust, reliability, and measurable outcomes matter."
+>
+  <Header activePage="real-world-ai" />
+
+  <main>
+    <section class="page-introduction">
+      <div class="site-container">
+        <h1>Real-World AI</h1>
+
+        <p>
+          Throughout my career I've had the opportunity to work on—and later
+          oversee—the development and deployment of AI systems across a wide
+          range of mission-critical applications. From autonomous spacecraft
+          and maritime systems to healthcare, transportation, critical
+          infrastructure, and decision intelligence, these efforts span nearly
+          three decades of applying AI to complex real-world challenges.
+        </p>
+
+        <p class="scope-note">
+          The examples below are representative rather than comprehensive. They
+          illustrate publicly disclosed programs and technologies that reflect
+          both the evolution of AI and my own journey helping bring it into
+          operational use.
+        </p>
+      </div>
+    </section>
+
+    <!-- Autonomy -->
+    <section
+      class="capability-section site-container"
+      id="autonomy"
+      aria-labelledby="autonomy-heading"
+    >
+      <div class="capability-header">
+        <img
+          src="/images/autonomy.png"
+          alt=""
+          class="capability-thumbnail"
+          aria-hidden="true"
+        />
+
+        <div class="capability-header-content">
+          <SectionHeader
+            title="Autonomy"
+            id="autonomy-heading"
+          />
+
+          <p class="capability-introduction">
+            Autonomy extends human capability by enabling systems to perceive,
+            plan, decide, and act with progressively less direct human control.
+            Throughout my career, I have worked on and overseen autonomous
+            systems spanning space, maritime, and airborne domains.
+          </p>
+        </div>
+      </div>
+
+      <div class="example-list">
+        {
+          autonomyExamples.map((item) => (
+            <article class="example">
+              <div class="example-description">
+                <h3>{item.capability}</h3>
+                <p>{item.examples}</p>
+              </div>
+
+              <div class="example-reference">
+                <p class="reference-type">{item.referenceType}</p>
+
+                <a
+                  href={item.referenceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${item.referenceTitle}, opens in a new tab`}
+                >
+                  <span class="reference-title">
+                    {item.referenceTitle}
+                  </span>
+
+                  <span class="reference-source">
+                    {item.referenceSource}
+                  </span>
+
+                  <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Security -->
+    <section
+      class="capability-section site-container"
+      id="security"
+      aria-labelledby="security-heading"
+    >
+      <div class="capability-header">
+        <img
+          src="/images/security.png"
+          alt=""
+          class="capability-thumbnail"
+          aria-hidden="true"
+        />
+
+        <div class="capability-header-content">
+          <SectionHeader
+            title="Security"
+            id="security-heading"
+          />
+
+          <p class="capability-introduction">
+            Security protects people, infrastructure, and organizations by
+            helping detect threats and support timely decisions. Throughout my
+            career, I have worked on and overseen AI systems spanning
+            cybersecurity, aviation security, cargo inspection, and physical
+            security.
+          </p>
+        </div>
+      </div>
+
+      <div class="example-list">
+        {
+          securityExamples.map((item) => (
+            <article class="example">
+              <div class="example-description">
+                <h3>{item.capability}</h3>
+                <p>{item.examples}</p>
+              </div>
+
+              <div class="example-reference">
+                <p class="reference-type">{item.referenceType}</p>
+
+                <a
+                  href={item.referenceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${item.referenceTitle}, opens in a new tab`}
+                >
+                  <span class="reference-title">
+                    {item.referenceTitle}
+                  </span>
+
+                  <span class="reference-source">
+                    {item.referenceSource}
+                  </span>
+
+                  <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Transportation -->
+    <section
+      class="capability-section site-container"
+      id="transportation"
+      aria-labelledby="transportation-heading"
+    >
+      <div class="capability-header">
+        <img
+          src="/images/transportation.png"
+          alt=""
+          class="capability-thumbnail"
+          aria-hidden="true"
+        />
+
+        <div class="capability-header-content">
+          <SectionHeader
+            title="Transportation"
+            id="transportation-heading"
+          />
+
+          <p class="capability-introduction">
+            Transportation AI improves the safety, efficiency, and resilience
+            of systems that move people and goods. Throughout my career, I have
+            worked on and overseen AI systems spanning mission-critical
+            software, aviation operations, and logistics and supply chains.
+          </p>
+        </div>
+      </div>
+
+      <div class="example-list">
+        {
+          transportationExamples.map((item) => (
+            <article class="example">
+              <div class="example-description">
+                <h3>{item.capability}</h3>
+                <p>{item.examples}</p>
+              </div>
+
+              <div class="example-reference">
+                <p class="reference-type">{item.referenceType}</p>
+
+                <a
+                  href={item.referenceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${item.referenceTitle}, opens in a new tab`}
+                >
+                  <span class="reference-title">
+                    {item.referenceTitle}
+                  </span>
+
+                  <span class="reference-source">
+                    {item.referenceSource}
+                  </span>
+
+                  <span class="arrow" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section><section
+  class="capability-section site-container"
+  id="critical-infrastructure"
+  aria-labelledby="critical-infrastructure-heading"
+>
+  <div class="capability-header">
+    <img
+      src="/images/critical-infrastructure.png"
+      alt=""
+      class="capability-thumbnail"
+      aria-hidden="true"
+    />
+
+    <div class="capability-header-content">
+      <SectionHeader
+        title="Critical Infrastructure"
+        id="critical-infrastructure-heading"
+      />
+
+      <p class="capability-introduction">
+        Critical infrastructure AI improves the reliability, resilience, and
+        performance of essential systems. Throughout my career, I have worked
+        on and overseen AI systems spanning energy systems, industrial
+        operations, and disaster response.
+      </p>
+    </div>
+  </div>
+
+  <div class="example-list">
+    {
+      infrastructureExamples.map((item) => (
+        <article class="example">
+          <div class="example-description">
+            <h3>{item.capability}</h3>
+            <p>{item.examples}</p>
+          </div>
+
+          <div class="example-reference">
+            <p class="reference-type">
+              {item.referenceType}
+            </p>
+
+            <a
+              href={item.referenceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${item.referenceTitle}, opens in a new tab`}
+            >
+              <span class="reference-title">
+                {item.referenceTitle}
+              </span>
+
+              <span class="reference-source">
+                {item.referenceSource}
+              </span>
+
+              <span class="arrow" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<section
+  class="capability-section site-container"
+  id="healthcare"
+  aria-labelledby="healthcare-heading"
+>
+  <div class="capability-header">
+    <img
+      src="/images/healthcare.png"
+      alt=""
+      class="capability-thumbnail"
+      aria-hidden="true"
+    />
+
+    <div class="capability-header-content">
+      <SectionHeader
+        title="Healthcare"
+        id="healthcare-heading"
+      />
+
+      <p class="capability-introduction">
+        Healthcare AI improves patient outcomes, accelerates scientific
+        discovery, and enhances the delivery of care. Throughout my career, I
+        have worked on and overseen AI systems spanning biomedical research,
+        medical imaging, and healthcare operations.
+      </p>
+    </div>
+  </div>
+
+  <div class="example-list">
+    {
+      healthcareExamples.map((item) => (
+        <article class="example">
+          <div class="example-description">
+            <h3>{item.capability}</h3>
+            <p>{item.examples}</p>
+          </div>
+
+          <div class="example-reference">
+            <p class="reference-type">
+              {item.referenceType}
+            </p>
+
+            <a
+              href={item.referenceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${item.referenceTitle}, opens in a new tab`}
+            >
+              <span class="reference-title">
+                {item.referenceTitle}
+              </span>
+
+              <span class="reference-source">
+                {item.referenceSource}
+              </span>
+
+              <span class="arrow" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+<section
+  class="capability-section site-container"
+  id="decision-intelligence"
+  aria-labelledby="decision-intelligence-heading"
+>
+  <div class="capability-header">
+    <img
+      src="/images/decision-intelligence.png"
+      alt=""
+      class="capability-thumbnail"
+      aria-hidden="true"
+    />
+
+    <div class="capability-header-content">
+      <SectionHeader
+        title="Decision Intelligence"
+        id="decision-intelligence-heading"
+      />
+
+      <p class="capability-introduction">
+        Decision intelligence AI transforms data into actionable insight,
+        helping people make faster, better-informed decisions in complex
+        environments. Throughout my career, I have worked on and overseen AI
+        systems spanning command and control, predictive analytics, and
+        intelligence analysis.
+      </p>
+    </div>
+  </div>
+
+  <div class="example-list">
+    {
+      decisionExamples.map((item) => (
+        <article class="example">
+          <div class="example-description">
+            <h3>{item.capability}</h3>
+            <p>{item.examples}</p>
+          </div>
+
+          <div class="example-reference">
+            <p class="reference-type">
+              {item.referenceType}
+            </p>
+
+            <a
+              href={item.referenceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${item.referenceTitle}, opens in a new tab`}
+            >
+              <span class="reference-title">
+                {item.referenceTitle}
+              </span>
+
+              <span class="reference-source">
+                {item.referenceSource}
+              </span>
+
+              <span class="arrow" aria-hidden="true">
+                ↗
+              </span>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+  </main>
+</MainLayout>
+
+<style>
+  .page-introduction {
+    padding:
+      clamp(3.5rem, 6vw, 5.5rem) 0
+      clamp(3rem, 5vw, 4.5rem);
+  }
+
+  .page-introduction h1 {
+    margin: 0 0 1.25rem;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2.7rem, 5vw, 4.5rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.035em;
+  }
+
+  .page-introduction > div > p {
+    max-width: 850px;
+    margin: 0;
+    font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+    line-height: 1.7;
+  }
+
+  .page-introduction .scope-note {
+    max-width: 760px;
+    margin-top: 1.2rem;
+    color: var(--muted);
+    font-size: 0.96rem;
+  }
+
+  .capability-section {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    column-gap: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--line);
+    scroll-margin-top: 2rem;
+  }
+
+  .capability-header {
+    display: contents;
+  }
+
+  .capability-thumbnail {
+    grid-column: 1;
+    width: 140px;
+    height: auto;
+  }
+
+  .capability-header-content {
+    grid-column: 2;
+    min-width: 0;
+  }
+
+  .capability-introduction {
+    max-width: 900px;
+    margin: 0.2rem 0 0;
+    color: var(--text);
+    font-size: clamp(1.02rem, 1.4vw, 1.14rem);
+    line-height: 1.75;
+  }
+
+  .example-list {
+    grid-column: 2;
+    width: 100%;
+  }
+
+  .example {
+    display: grid;
+    grid-template-columns:
+      minmax(270px, 0.85fr)
+      minmax(360px, 1.4fr);
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: center;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .example-description h3 {
+    margin: 0 0 0.35rem;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 2vw, 1.65rem);
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .example-description p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.98rem;
+    line-height: 1.5;
+  }
+
+  .example-reference {
+    min-width: 0;
+  }
+
+  .reference-type {
+    margin: 0 0 0.35rem;
+    color: var(--muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .example-reference a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "title arrow"
+      "source arrow";
+    gap: 0.15rem 1.25rem;
+    align-items: center;
+    padding: 0.15rem 0;
+    color: var(--ink);
+  }
+
+  .reference-title {
+    grid-area: title;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .reference-source {
+    grid-area: source;
+    color: var(--muted);
+    font-size: 0.88rem;
+  }
+
+  .arrow {
+    grid-area: arrow;
+    color: var(--accent);
+    font-size: 1.3rem;
+    transition: transform 150ms ease;
+  }
+
+  .example-reference a:hover .reference-title,
+  .example-reference a:focus-visible .reference-title {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+
+  .example-reference a:hover .arrow,
+  .example-reference a:focus-visible .arrow {
+    transform: translate(0.15rem, -0.15rem);
+  }
+
+  .capability-header-content :global(.section-header h2) {
+    margin-top: 0;
+  }
+
+  @media (max-width: 800px) {
+    .capability-section {
+      grid-template-columns: 110px minmax(0, 1fr);
+      column-gap: 1.15rem;
+    }
+
+    .capability-thumbnail {
+      width: 110px;
+    }
+
+    .example {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .capability-section {
+      grid-template-columns: 1fr;
+    }
+
+    .capability-thumbnail,
+    .capability-header-content,
+    .example-list {
+      grid-column: 1;
+    }
+
+    .capability-thumbnail {
+      width: 140px;
+      margin-bottom: 1rem;
+    }
+  }
+</style>

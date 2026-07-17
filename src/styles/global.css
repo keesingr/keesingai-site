@@ -1,0 +1,126 @@
+:root {
+  --navy: #01245f;
+  --ink: #10264b;
+  --text: #252a31;
+  --muted: #5f6874;
+  --line: #d4d8de;
+  --paper: #fbfaf7;
+  --white: #ffffff;
+  --accent: #2c83c5;
+
+  --font-sans:
+    "IBM Plex Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  --font-serif:
+    "Source Serif 4",
+    Georgia,
+    serif;
+
+  /*
+   * The main content aligns with the full width
+   * of the banner graphic on large screens.
+   */
+  --page-width: 1280px;
+  --page-padding: clamp(1.25rem, 3.5vw, 3.25rem);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.site-container {
+  width: min(
+    calc(100% - (2 * var(--page-padding))),
+    var(--page-width)
+  );
+  margin-inline: auto;
+}
+
+.section-header {
+  margin-bottom: 0;
+}
+
+.section-header-content {
+  min-width: 0;
+}
+
+/* ----------------------------------------------------------
+   Real-World AI capability sections
+---------------------------------------------------------- */
+
+.capability-header {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: .5rem;
+}
+
+.capability-thumbnail {
+  display: block;
+  width: 140px;
+  height: auto;
+}
+
+@media (max-width: 800px) {
+  .capability-header {
+    grid-template-columns: 110px minmax(0, 1fr);
+    gap: 1.25rem;
+  }
+
+  .capability-thumbnail {
+    width: 110px;
+  }
+}
+
+@media (max-width: 560px) {
+  .capability-header {
+    grid-template-columns: 1fr;
+  }
+
+  .capability-thumbnail {
+    width: 140px;
+  }
+}
+
+::selection {
+  color: var(--white);
+  background: var(--navy);
+}

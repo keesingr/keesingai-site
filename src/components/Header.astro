@@ -1,0 +1,302 @@
+---
+interface Props {
+  activePage?: string;
+}
+
+const { activePage = "" } = Astro.props;
+
+const navigation = [
+  { label: "Experience", href: "/experience/", key: "experience" },
+  { label: "Real-World AI", href: "/real-world-ai/", key: "real-world-ai" },
+  { label: "Perspectives", href: "/perspectives/", key: "perspectives" },
+  { label: "Speaking", href: "/speaking/", key: "speaking" },
+  { label: "About", href: "/about/", key: "about" },
+  { label: "Contact", href: "/contact/", key: "contact" },
+];
+
+const bannerRegions = [
+  {
+    label: "Explore autonomy applications",
+    href: "/real-world-ai/#autonomy",
+    className: "autonomy",
+  },
+  {
+    label: "Explore security applications",
+    href: "/real-world-ai/#security",
+    className: "security",
+  },
+  {
+    label: "Explore transportation applications",
+    href: "/real-world-ai/#transportation",
+    className: "transportation",
+  },
+  {
+    label: "Explore critical infrastructure applications",
+    href: "/real-world-ai/#critical-infrastructure",
+    className: "critical-infrastructure",
+  },
+  {
+    label: "Explore healthcare applications",
+    href: "/real-world-ai/#healthcare",
+    className: "healthcare",
+  },
+  {
+    label: "Explore decision intelligence applications",
+    href: "/real-world-ai/#decision-intelligence",
+    className: "decision-intelligence",
+  },
+];
+---
+
+<header class="masthead">
+  <div class="site-container masthead-inner">
+    <div class="topbar">
+      <a class="site-name" href="/" aria-label="Ron Keesing homepage">
+        Ron Keesing
+      </a>
+
+      <nav class="primary-nav" aria-label="Primary navigation">
+        {
+          navigation.map((item) => (
+            <a
+              href={item.href}
+              class:list={{ active: activePage === item.key }}
+              aria-current={activePage === item.key ? "page" : undefined}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <div class="brand-art">
+      <img
+        src="/images/banner.png"
+        alt="Line illustrations representing autonomy, security, transportation, critical infrastructure, healthcare, and decision intelligence"
+      />
+
+      <nav
+        class="banner-navigation"
+        aria-label="Real-world AI capability areas"
+      >
+        {
+          bannerRegions.map((region) => (
+            <a
+              class={`banner-region ${region.className}`}
+              href={region.href}
+              aria-label={region.label}
+            />
+          ))
+        }
+      </nav>
+    </div>
+
+    <p class="brand-line">
+      <span>Enterprise AI Strategy</span>
+      <span class="separator" aria-hidden="true">|</span>
+      <span>Trusted AI Governance</span>
+      <span class="separator" aria-hidden="true">|</span>
+      <span>Human-Centered AI Transformation</span>
+    </p>
+  </div>
+</header>
+
+<style>
+  .masthead {
+    background-color: #01245f;
+    color: #ffffff;
+  }
+
+  .masthead-inner {
+    padding-top: 1.15rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .site-name {
+    color: #ffffff;
+    font-family: var(--font-serif);
+    font-size: clamp(2.45rem, 4.4vw, 4rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    white-space: nowrap;
+  }
+
+  .primary-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: clamp(0.8rem, 1.65vw, 1.65rem);
+    padding-top: 0.55rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+  }
+
+  .primary-nav a {
+    position: relative;
+    padding-bottom: 0.35rem;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .primary-nav a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: #ffffff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 150ms ease;
+  }
+
+  .primary-nav a:hover::after,
+  .primary-nav a:focus-visible::after,
+  .primary-nav a.active::after {
+    transform: scaleX(1);
+  }
+
+  .primary-nav a.active {
+    color: #ffffff;
+  }
+
+  .brand-art {
+    position: relative;
+    margin: 1rem auto 0.75rem;
+  }
+
+  .brand-art img {
+    width: 100%;
+    height: auto;
+  }
+
+  .banner-navigation {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .banner-region {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: block;
+    background: transparent;
+    transition:
+      background-color 150ms ease,
+      box-shadow 150ms ease;
+  }
+
+  .banner-region:hover {
+    background: rgba(255, 255, 255, 0.07);
+  }
+
+  .banner-region:focus-visible {
+    z-index: 2;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+  }
+
+  .banner-region.autonomy {
+    left: 0;
+    width: 16.6667%;
+  }
+
+  .banner-region.security {
+    left: 16.6667%;
+    width: 16.6667%;
+  }
+
+  .banner-region.transportation {
+    left: 33.3334%;
+    width: 16.6667%;
+  }
+
+  .banner-region.critical-infrastructure {
+    left: 50.0001%;
+    width: 16.6667%;
+  }
+
+  .banner-region.healthcare {
+    left: 66.6668%;
+    width: 18.6667%;
+  }
+
+  .banner-region.decision-intelligence {
+    left: 85.3335%;
+    width: 14.6665%;
+  }
+
+  .brand-line {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.75rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.94);
+    font-size: clamp(0.7rem, 1.05vw, 0.84rem);
+    font-weight: 500;
+    letter-spacing: 0.035em;
+    line-height: 1.45;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .separator {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  @media (max-width: 1040px) {
+    .topbar {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .primary-nav {
+      justify-content: flex-start;
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .masthead-inner {
+      padding-top: 1rem;
+      padding-bottom: 1.1rem;
+    }
+
+    .site-name {
+      white-space: normal;
+    }
+
+    .primary-nav {
+      gap: 0.7rem 1.05rem;
+      font-size: 0.67rem;
+    }
+
+    .brand-line {
+      display: block;
+      line-height: 1.75;
+    }
+
+    .brand-line span:not(.separator) {
+      display: block;
+    }
+
+    .brand-line .separator {
+      display: none;
+    }
+  }
+</style>
