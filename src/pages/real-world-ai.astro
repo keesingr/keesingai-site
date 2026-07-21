@@ -3,6 +3,8 @@ import Header from "../components/Header.astro";
 import MainLayout from "../layouts/MainLayout.astro";
 import SectionHeader from "../components/SectionHeader.astro";
 
+
+
 const autonomyExamples = [
   {
     capability: "Space Autonomy",
@@ -219,6 +221,10 @@ const decisionExamples = [
   <Header activePage="real-world-ai" />
 
   <main>
+    <a class="home-return" href="/" aria-label="Return to homepage">
+      <span aria-hidden="true">←</span>
+      <span>Home</span>
+    </a>
     <section class="page-introduction">
       <div class="site-container">
         <h1>Real-World AI</h1>
@@ -636,6 +642,54 @@ const decisionExamples = [
 </MainLayout>
 
 <style>
+
+    .home-return {
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+
+    padding: 0.55rem 0.7rem;
+    color: #01245f;
+    background: rgba(251, 250, 247, 0.96);
+    border: 1px solid rgba(1, 36, 95, 0.18);
+    border-left: 0;
+    border-radius: 0 0.25rem 0.25rem 0;
+
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    transform: translateY(-50%);
+    transition:
+        background-color 150ms ease,
+        padding-left 150ms ease;
+    }
+
+    .home-return:hover,
+    .home-return:focus-visible {
+    background: #ffffff;
+    padding-left: 0.9rem;
+    }
+
+    @media (max-width: 800px) {
+    .home-return {
+        top: auto;
+        right: 1rem;
+        bottom: 1rem;
+        left: auto;
+
+        border: 1px solid rgba(1, 36, 95, 0.18);
+        border-radius: 0.25rem;
+        transform: none;
+    }
+    }
   .page-introduction {
     padding:
       clamp(3.5rem, 6vw, 5.5rem) 0
