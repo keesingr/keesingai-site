@@ -1,5 +1,4 @@
 ---
-import Header from "../components/Header.astro";
 import "../styles/global.css";
 
 interface Props {
@@ -19,37 +18,42 @@ const {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const socialImageURL = new URL(image, Astro.site);
+
+const GA_MEASUREMENT_ID = "G-659ZQG3224";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>{title}</title>
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="icon" type="image/svg+xml" href="/favicon.png">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:image" content={socialImageURL} />
+    <meta property="og:image:secure_url" content={socialImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:secure_url" content="https://keesingai.com/social-card.png" />
-    <meta property="og:image" content="https://keesingai.com/social-card.png" />
 
     <!-- Twitter/X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content="https://keesingai.com/social-card.png" /><meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="twitter:image" content={socialImageURL} />
 
-    <title>{title}</title>
-    <meta name="description" content={description} />
-
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
@@ -57,6 +61,23 @@ const socialImageURL = new URL(image, Astro.site);
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Google Analytics -->
+    <script
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+    ></script>
+
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+      gtag("config", GA_MEASUREMENT_ID);
+    </script>
   </head>
 
   <body>
@@ -65,7 +86,6 @@ const socialImageURL = new URL(image, Astro.site);
     <footer class="site-footer">
       <div class="site-container footer-inner">
         <span>© {new Date().getFullYear()} Ron Keesing</span>
-
         <a href="/contact/">Contact</a>
       </div>
     </footer>
