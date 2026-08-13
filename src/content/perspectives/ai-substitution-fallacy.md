@@ -24,7 +24,7 @@ This isn’t an argument against general-purpose assistants. In many personal pr
 
 For quality-sensitive processes, though, local productivity gains alone are often misleading. AI doesn’t simply substitute labor; it substitutes a different quality of work. And because business processes convert both labor and quality into business value, changes in quality inevitably affect the economics of the process. What appears to be an efficiency gain at one step can simply shift costs—or destroy value—somewhere else.
 
-Quality differences can also create opportunities. Higher-quality AI-enabled work may do more than improve the output of a particular step; it can remove bottlenecks elsewhere in the process.
+Quality differences can also create opportunities. Higher-quality AI-enabled work may do more than improve the output of a particular step; it can mitigate bottlenecks elsewhere in the process.
 
 Software development provides a useful example. As AI makes code faster to produce, many organizations are discovering that the bottleneck simply moves downstream to human code review. But if humans working with AI can also produce consistently higher-quality code, that creates an opportunity to rethink the review process itself. Higher-quality inputs may require less intensive review, allow reviewers to focus attention on higher-risk changes, or enable more of the review process to be automated. In that case, the value of improved quality isn't simply better code. It is greater throughput across the entire development process.
 
