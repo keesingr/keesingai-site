@@ -15,6 +15,18 @@ interface SpeakingItem {
 
 const upcomingAppearances: SpeakingItem[] = [
   {
+    title: "The Leadership Pulse Podcast",
+    source: "Hosted by Arika Pierce Williams",
+    description:
+      "An upcoming conversation on The Leadership Pulse Podcast. Recording August 21, 2026; release date to be announced.",
+    image: "/images/headshot.jpg",
+    imageAlt: "Ron Keesing",
+    date: "Recording: August 21, 2026 · Release: TBD",
+  },
+];
+
+const recentAppearances: SpeakingItem[] = [
+  {
     title: "Black Hat USA 2026 — AI Summit",
     source: "Panel: Securing Agentic AI: New Roles, New Risks, New Operating Models",
     description:
@@ -112,6 +124,55 @@ const selectedTalks: SpeakingItem[] = [
         {
           upcomingAppearances.map((item) => (
             <article class="speaking-item upcoming-item">
+              <div class="speaking-image">
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  loading="lazy"
+                />
+              </div>
+
+              <div class="speaking-content">
+                {item.date && <p class="item-date">{item.date}</p>}
+
+                <h3>{item.title}</h3>
+
+                <p class="item-source">{item.source}</p>
+
+                <p class="item-description">{item.description}</p>
+
+                {item.href && item.linkLabel && (
+                  <a
+                    class="item-link"
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${item.linkLabel}: ${item.title}, opens in a new tab`}
+                  >
+                    {item.linkLabel}
+                    <span aria-hidden="true">→</span>
+                  </a>
+                )}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section
+      class="speaking-section recent-section site-container"
+      aria-labelledby="recent-heading"
+    >
+      <header class="section-heading">
+        <p class="section-label">Recent</p>
+        <h2 id="recent-heading">Recent Appearances</h2>
+      </header>
+
+      <div class="speaking-list">
+        {
+          recentAppearances.map((item) => (
+            <article class="speaking-item">
               <div class="speaking-image">
                 <img
                   src={item.image}
