@@ -14,7 +14,7 @@ In this way, well-executed corporate governance is not an obstacle to transforma
 
 As a domain expert in AI I understand that it represents far more than just a set of technologies added to the enterprise tool stack. Used effectively, AI drives fundamental transformations in workflows, changing how well-run organizations marshal suppy chains, create products, deliver services, make decisions, manage risk, develop talent, and ultimately create value.
 
-The board’s responsibility, the, is not simply to govern AI risk. It is to oversee and steward AI transformation across the enterprise. That requires balancing innovation with accountability while ensuring that AI investments generate real value while advancing the organization’s mission, values, and long-term strategic objectives.
+The board’s responsibility, then, is not simply to govern AI risk. It is to oversee and steward AI transformation across the enterprise. That requires balancing innovation with accountability while ensuring that AI investments generate real value while advancing the organization’s mission, values, and long-term strategic objectives.
 
 
 ## Governing increasingly autonomous systems
