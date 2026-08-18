@@ -7,32 +7,33 @@ originalSource: "LinkedIn"
 draft: false
 ---
 
-One of the most common misconceptions about enterprise AI is what I call **The AI Dividend Fallacy**.
+A common misconception many leaders share regarding enterprise AI is something I like to call **The AI Dividend Fallacy**. This is the belief that productivity gains from AI – particularly generative AI (GenAI) - should generally show up as lower headcount and reduced operating costs. And that if they don’t, then AI isn’t generating real value.
 
-The fallacy is the belief that productivity gains from AI should primarily appear as lower headcount and reduced budgets, particularly in the case of generative AI.
+That sounds logical at first glance. GenAI looks like a productivity tool. And if every employee becomes more productive, shouldn't an organization need fewer employees? And we’ve seen companies ranging from Salesforce to Klarna to Uber to IBM laying off employees in the hopes of operating just as effectively with smaller workforces enabled by AI. 
 
-That sounds logical. If every employee becomes more productive, shouldn't an organization need fewer employees?
+However, the productivity increases possible with GenAI are typically concentrated in knowledge work. And much of the knowledge work that organizations do is not labor-constrained. It’s **capacity-constrained**. 
 
-The problem is that most knowledge-work organizations are not labor-constrained. They are **capacity-constrained**.
+What do I mean? That a lot of knowledge work has elastic or latent demand, meaning task-level productivity gains do not directly translate into reduced labor. Rather, freed capacity can be converted into other forms of value (often in areas that organizations haven’t previously been able to invest in), such as:
 
-When productivity increases, organizations typically use that additional capacity to:
+- Improved quality
 
-- Improve quality
-- Reduce backlog
-- Accelerate cycle times
+- Accelerated cycle times
+
+- New capability delivery
+
 - Lower risk
-- Increase innovation
 
-In other words, the dividend from AI is often **more output, better output, or both—not less labor.**
+- Reduced backlog
 
-This does not mean workforce composition will remain unchanged, nor that organizations should ignore efficiency. But leaders who look only for immediate cost reduction may overlook the much greater strategic value AI can create.
+- Increased innovation
 
-The competitive implications make this even more significant.
+Put another way, the “AI dividend” from GenAI for often takes the form of more output, better output, or both – not less labor. 
 
-One organization may use AI primarily to reduce costs while maintaining the same level of output. A competitor may use those same productivity gains to improve customer experience, expand into adjacent markets, accelerate innovation, or deliver new capabilities.
+And this isn’t just my observation – there are some tremendous studies that bear this out. For example, Dillon et al (https://www.aeaweb.org/articles?id=10.1257/aeri.20250275&&from=f) measured workers across 66 firms, finding direct evidence that the time savings from GenAI (2 hours/week on average for email) did not translate into a reduction in their overall work. In other words, the productivity gain was absorbed elsewhere.
+This doesn’t mean that organizations should ignore efficiency or that AI use always delivers value. But leaders who only consider immediate cost reduction as a way to measure AI value may be missing the much greater strategic value that it can create. 
 
-The second organization is likely to create a much larger long-term advantage.
+And in a competitive market, the need to consider broader strategic opportunities from AI becomes even more significant. An organization that focuses AI use on reducing operating expenses may find a competitor turning those same productivity gains into improved customer experiences, faster feature releases, top-line growth, market share capture, or expansion into adjacent markets. Which of those organizations is likely to enjoy the greater long-term competitive advantage? Often the latter.
 
-For most organizations, generative AI is fundamentally a productivity technology. The real leadership challenge is not deciding how much labor to eliminate. It is understanding where productivity is being created and making deliberate choices about how to convert that new capacity into organizational capability and competitive advantage.
+Fundamentally, GenAI is a tool for increasing productivity. The challenge for leadership, then, is to decide what to do with freed labor capacity. In some cases, reducing headcount and decreasing operating costs makes strategic sense. But for many, the long-term strategic play is to make deliberate choices about how to convert newly freed capacity into new capabilities, improved offerings, and long-term competitive advantage. 
 
-That requires measuring productivity itself—not simply looking for reductions in headcount or operating budgets. The most valuable AI dividend is often not lower cost. It is the ability to accomplish more, often with greater quality, than was previously possible.
+Of course getting this right requires more than just measuring local productivity gains or looking for headcount reductions or decreased operating expenses. If the AI dividend shows up as greater output, higher quality, faster delivery, or new capabilities, organizations need to measure those outcomes too. Otherwise, leaders risk missing the forest for the trees.
