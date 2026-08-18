@@ -24,8 +24,11 @@ The emergence and widespread use of generative and - increasingly - agentic AI p
 As agentic AI with increasingly autonomous capabilities begin being integrated into enterprise systems, the nature of risk, accountability, and assurance begins to change in fundamental ways. Boards will need to ensure that governance frameworks keep pace with advancements in these technologies by:
 
 •	Establishing clear accountability use of for autonomous agents.
+
 •	Maintaining appropriate human oversight for high-consequence decisions.
+
 •	Overseeing the establishment of effective mechanisms to minimize risks to critical enterprise systems and data.
+
 •	Ensuring that the pace of adoption does not outstrip the enterprise capacity to risk management and mitigation.
 
 In regulated and mission-critical environments, these approaches have always been understood but must be updated in the face of AI’s emergent technical capabilities. In other domains, these approaches will need to become a foundational component of sustainable AI adoption.
@@ -38,8 +41,11 @@ Organizations that will derive the most long-term value from AI will be those th
 Effective board governance helps leadership balance the imperative to increase short-term efficiency with the broader opportunity to drive long-term value creation by asking:
 
 •	How does AI change the competitive landscape in this industry?
+
 •	Where does it create either temporary or durable competitive advantage?
-•	Where does it introduce new categories of risk within our ecosystem? For us? Competitors? Suppliers?
+
+•	Where does it introduce new categories of risk within our ecosystem? For this organization? Competitors? Suppliers?
+
 •	How must the workforce and organization evolve to capture its full potential?
 
 Cost efficiency may be a key outcome of a well-articulated AI strategy. It should not be the strategy itself.
