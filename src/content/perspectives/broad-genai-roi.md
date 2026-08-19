@@ -7,70 +7,40 @@ originalSource: "LinkedIn"
 draft: false
 ---
 
-In my essay *The AI Dividend Fallacy*, I argued that AI productivity gains do not automatically translate into lower costs. That naturally leads to another question I hear from executives:
+In my essay [*The AI Dividend Fallacy*](/perspectives/ai-dividend-fallacy/), I argue that AI productivity gains associated with generative AI (GenAI) do not automatically translate into reduced headcount and lower costs. That naturally leads to another question I hear from executives:
 
-**How should organizations measure the ROI of Enterprise GenAI?**
+**How should we measure the ROI of enterprise GenAI investments?**
 
-My answer surprises many people.
+My answer may seem surprising.
 
-For general-purpose AI assistants such as ChatGPT, Claude, or Gemini, organizations often spend far too much effort trying to measure something that is not worth measuring precisely.
+For general-purpose GenAI assistants such as ChatGPT, Claude, or Gemini being used for broad knowledge work, organizations often spend unnecessary effort trying to measure something that isn’t even worth capturing precisely (if that’s even possible).
 
 ## The economics are already favorable
 
-In one organization I know well, Enterprise GenAI paid for itself if it improved employee productivity by **less than 0.5%**.
+In one organization I know well, the enterprise GenAI tools made available for broad knowledge work would have paid for themselves by increasing employee productivity by **less than 0.5%**.
 
 Think about that for a moment.
 
-How would you reliably measure a 0.5% productivity improvement across thousands of employees performing hundreds of different knowledge tasks?
+How would you reliably measure a 0.5% productivity improvement across thousands of employees performing dozens of different knowledge tasks?
 
-Building instrumentation capable of detecting a change that small can easily cost more than the uncertainty you are trying to eliminate.
+Building instrumentation capable of detecting a change that small could easily cost more than the uncertainty you are trying to eliminate.
 
 ## Knowledge work is difficult to measure
 
-There is a second problem.
+This is really a reflection of a common challenge in most organizations – measuring the productivity of day-to-day knowledge work, and the impact of tools on that productivity.
 
-Measuring productivity in knowledge work is far harder than many organizations assume.
+Consider a simple thought experiment. What productivity gain does your organization achieve by using Microsoft Office? Do you calculate ROI each quarter? Where would you even start?
 
-Consider a simple thought experiment.
-
-What productivity gain does your organization receive from Microsoft Office?
-
-Do you calculate its ROI every quarter?
-
-Most organizations do not.
-
-They recognize Microsoft Office as enabling infrastructure rather than a narrowly defined business application.
-
-Enterprise GenAI is increasingly becoming the same kind of capability.
+Most organizations now simply accept that Microsoft Office is enabling infrastructure for knowledge work rather than an investment with an objectively measurable ROI. And I would argue that GenAI is rapidly becoming the same type of capability.
 
 ## Good governance still matters
 
-None of this suggests that Enterprise GenAI should become a free-for-all.
-
-Organizations still need:
-
-- Spending controls
-- Token caps
-- Employee training
-- Appropriate governance
-- Risk management
-
-Those disciplines remain essential regardless of whether precise ROI is measured.
+I’m not suggesting that GenAI for knowledge work should become a free-for-all. Organizations still need employee training, spending controls (including token caps), data protection/management, robust governance, and risk management to use GenAI safely, effectively, and responsibly. And the additional costs associated with GenAI should be included when considering the broader economics. But again, even if these things increase costs by a factor of four, how effectively could most organizations measure a 2% gain in efficiency across broad knowledge tasks?
 
 ## Measure where it matters
 
-Rigorous ROI measurement becomes far more valuable when AI is embedded within repeatable, high-volume business processes.
+Measuring ROI rigorously becomes far more meaningful when AI is embedded within repeatable, high-volume business processes and workflows. Such processes often have existing checkpoints or review gates that can serve as reference points, making them easier to instrument. They’re often measured using existing metrics, making them easier to benchmark and easier to compare to historical performance.
 
-Those systems are:
+And most importantly, they’re often key to the way the organization generates value. That means that productivity gains can drive substantially larger and more measurable business impacts than those associated with broad knowledge work.
 
-- Easier to instrument
-- Easier to benchmark
-- Easier to compare against historical performance
-
-More importantly, they often generate substantially larger measurable business improvements than broad productivity tools.
-
-Organizations should focus their measurement efforts where they can produce meaningful insight rather than statistical noise.
-
-The goal is not to avoid measurement. It is to measure where measurement creates value.
-
-That distinction becomes especially important when AI moves beyond general-purpose assistants and becomes part of the organization's core business processes.
+So my advice for measuring GenAI ROI? Focus measurement efforts where they can produce meaningful insight rather than chasing statistical noise. Measure and make important investment decisions around value creation. And when it comes to business enablement, focus on managing costs and delivering capabilities as efficiently as possible.
