@@ -20,6 +20,6 @@ Still, memory safety is only one source of vulnerabilities. Logic bugs can be mu
 
 AI changes these economics. As the cost of vulnerabilities goes down, the value of provably correct code increases. And AI is also reducing the cost of formal methods by accelerating and potentially automating every step, from specification to coding to writing proofs.
 
-And adversaries aren’t the only ones who can use AI to discover vulnerabilities. AI allows cyber defense organizations to become truly proactive, creating closed loops that use AI to discover and secure vulnerabilities ahead of adversaries. The economics here are more complex but may ultimately favor the defender. Pay more for better, more secure code. Leverage better access and knowledge to AI red-team and fix your systems more effectively than attackers can.
+And adversaries aren’t the only ones who can use AI to discover vulnerabilities. AI allows cyber defense organizations to become truly proactive, creating closed loops that use AI to discover and secure vulnerabilities ahead of adversaries. The economics here are more complex but may ultimately favor the defender. Pay more for better, more secure code. Leverage better access and knowledge to AI red-team and fix your systems more effectively than attackers can leverage AI-generated exploits.
 
 Regardless of whether the optimists or pessimists are right, one thing is clear: the economics of the cyber world have changed, which means the whole paradigm must change as well.
