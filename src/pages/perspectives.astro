@@ -20,7 +20,7 @@ const essaysAndPosts = entries.filter(
 
 <MainLayout
   title="Perspectives | Ron Keesing"
-  description="Ideas, conversations, executive briefs, essays, posts, and presentations on enterprise AI."
+  description="Ideas, conversations, executive briefs, essays, and posts on enterprise AI."
 >
   <Header activePage="perspectives" />
 
@@ -30,9 +30,9 @@ const essaysAndPosts = entries.filter(
         <h1>Perspectives</h1>
 
         <p>
-          Ideas, conversations, and presentations on enterprise AI strategy,
-          governance, human-centered transformation, and the practical
-          realities of deploying AI at scale.
+          Ideas and conversations on enterprise AI strategy, governance,
+          human-centered transformation, and the practical realities of
+          deploying AI at scale.
         </p>
       </div>
     </section>
@@ -135,41 +135,6 @@ const essaysAndPosts = entries.filter(
       )
     }
 
-    <section class="content-section">
-      <div class="site-container">
-        <SectionHeader title="Presentations" />
-
-        <div class="item-list">
-          <article class="list-item">
-            <p class="content-type">Presentation</p>
-
-            <h3>Mission AI vs. Sandbox AI</h3>
-
-            <p>
-              Why organizations need to move beyond isolated AI tools and
-              integrate AI into operational workflows, enterprise data, and
-              governance systems.
-            </p>
-
-            <span class="coming-soon">Presentation link to be added</span>
-          </article>
-
-          <article class="list-item">
-            <p class="content-type">Presentation</p>
-
-            <h3>AI Governance 2.0</h3>
-
-            <p>
-              How autonomous agents and increasingly capable foundation models
-              change the requirements for enterprise AI governance, assurance,
-              and accountability.
-            </p>
-
-            <span class="coming-soon">Presentation link to be added</span>
-          </article>
-        </div>
-      </div>
-    </section>
   </main>
 </MainLayout>
 
@@ -271,11 +236,6 @@ const essaysAndPosts = entries.filter(
     border-top: 1px solid var(--line);
   }
 
-  .coming-soon {
-    color: var(--muted);
-    font-size: 0.92rem;
-    font-style: italic;
-  }
   @media (max-width: 700px) {
   .featured-item {
     grid-template-columns: 1fr;
@@ -287,4 +247,3 @@ const essaysAndPosts = entries.filter(
   }
 }
 </style>
-
