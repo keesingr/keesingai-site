@@ -13,18 +13,6 @@ interface SpeakingItem {
   date?: string;
 }
 
-const upcomingAppearances: SpeakingItem[] = [
-  {
-    title: "The Leadership Pulse Podcast",
-    source: "Hosted by Arika Pierce Williams",
-    description:
-      "An upcoming conversation on The Leadership Pulse Podcast. Recording August 21, 2026; release date to be announced.",
-    image: "/images/headshot.jpg",
-    imageAlt: "Ron Keesing",
-    date: "Recording: August 21, 2026 · Release: TBD",
-  },
-];
-
 const recentAppearances: SpeakingItem[] = [
   {
     title: "Black Hat USA 2026 — AI Summit",
@@ -89,7 +77,7 @@ const selectedTalks: SpeakingItem[] = [
 
 <MainLayout
   title="Speaking | Ron Keesing"
-  description="Selected talks, interviews, and upcoming appearances focused on enterprise AI strategy, trusted AI governance, and organizational transformation."
+  description="Selected talks, interviews, and recent appearances focused on enterprise AI strategy, trusted AI governance, and organizational transformation."
 >
   <Header activePage="speaking" />
 
@@ -107,55 +95,6 @@ const selectedTalks: SpeakingItem[] = [
           realities of moving AI from experimentation into operational
           capability.
         </p>
-      </div>
-    </section>
-
-    <section
-      class="speaking-section upcoming-section site-container"
-      aria-labelledby="upcoming-heading"
-    >
-      <header class="section-heading">
-        <p class="section-label">Upcoming</p>
-        <h2 id="upcoming-heading">Upcoming Appearances</h2>
-      </header>
-
-      <div class="speaking-list">
-        {
-          upcomingAppearances.map((item) => (
-            <article class="speaking-item upcoming-item">
-              <div class="speaking-image">
-                <img
-                  src={item.image}
-                  alt={item.imageAlt}
-                  loading="lazy"
-                />
-              </div>
-
-              <div class="speaking-content">
-                {item.date && <p class="item-date">{item.date}</p>}
-
-                <h3>{item.title}</h3>
-
-                <p class="item-source">{item.source}</p>
-
-                <p class="item-description">{item.description}</p>
-
-                {item.href && item.linkLabel && (
-                  <a
-                    class="item-link"
-                    href={item.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${item.linkLabel}: ${item.title}, opens in a new tab`}
-                  >
-                    {item.linkLabel}
-                    <span aria-hidden="true">→</span>
-                  </a>
-                )}
-              </div>
-            </article>
-          ))
-        }
       </div>
     </section>
 
@@ -301,10 +240,6 @@ const selectedTalks: SpeakingItem[] = [
     border-top: 1px solid var(--line);
   }
 
-  .upcoming-section .section-heading {
-    border-top: 3px solid var(--accent);
-  }
-
   .section-label {
     display: inline-block;
     margin: 0 0 0.75rem;
@@ -343,11 +278,6 @@ const selectedTalks: SpeakingItem[] = [
     border-top: 1px solid var(--line);
   }
 
-  .upcoming-item {
-    padding-top: clamp(2.25rem, 4.5vw, 3.5rem);
-    padding-bottom: clamp(2.25rem, 4.5vw, 3.5rem);
-  }
-
   .speaking-image {
     overflow: hidden;
     aspect-ratio: 16 / 9;
@@ -382,10 +312,6 @@ const selectedTalks: SpeakingItem[] = [
     font-weight: 600;
     line-height: 1.18;
     letter-spacing: -0.018em;
-  }
-
-  .upcoming-item .speaking-content h3 {
-    font-size: clamp(1.7rem, 2.85vw, 2.45rem);
   }
 
   .item-source {
