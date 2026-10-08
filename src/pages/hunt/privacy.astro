@@ -1,0 +1,290 @@
+---
+import Header from "../../components/Header.astro";
+import MainLayout from "../../layouts/MainLayout.astro";
+---
+
+<MainLayout
+  title="Privacy Policy — Keesing Puzzle Hunt"
+  description="Privacy policy for the Keesing Puzzle Hunt SMS service."
+>
+  <Header />
+
+  <main>
+    <article class="policy-page site-container">
+      <header class="policy-header">
+        <h1>Privacy Policy — Keesing Puzzle Hunt</h1>
+        <p class="last-updated"><strong>Last updated: October 8, 2026</strong></p>
+      </header>
+
+      <div class="policy-content">
+        <p>
+          This Privacy Policy describes how information is handled when you
+          participate in the Keesing Puzzle Hunt SMS service (“the Hunt”).
+        </p>
+
+        <p>
+          The Hunt is designed to collect and retain as little personal
+          information as possible.
+        </p>
+
+        <h2>Information We Receive</h2>
+
+        <p>
+          When you communicate with the Hunt by text message, the service may
+          receive:
+        </p>
+
+        <p>
+          <strong>Your phone number.</strong> Your phone number is used to identify
+          your participation, maintain your current game state, and send
+          responses to your messages.
+        </p>
+
+        <p>
+          <strong>Messages you send.</strong> This includes commands such as JOIN,
+          HELP, and STOP and location links that you choose to send as part of
+          the Hunt.
+        </p>
+
+        <p>
+          <strong>Location information you explicitly send.</strong> Some Hunt
+          activities ask you to share your current location by sending a
+          location link from your phone. The service extracts the latitude and
+          longitude contained in that message in order to calculate your
+          distance from a Hunt target.
+        </p>
+
+        <p>
+          The Hunt does <strong>not</strong> continuously track your location and
+          cannot access your location unless you explicitly send it.
+        </p>
+
+        <h2>How Location Information Is Used</h2>
+
+        <p>
+          When you send a location, the service calculates your distance from
+          the Hunt target so that it can provide clues such as WARMER or COLDER.
+        </p>
+
+        <p>
+          The Hunt is designed <strong>not to store the latitude or longitude you
+          send</strong>. Instead, after calculating your distance from the target,
+          the service retains only the previous calculated distance needed to
+          determine whether your next location is warmer or colder.
+        </p>
+
+        <p>Your location history is not maintained by the Hunt.</p>
+
+        <h2>Information We Store</h2>
+
+        <p>
+          The Hunt stores only the information needed to operate the game. This
+          may include:
+        </p>
+
+        <ul>
+          <li>Your phone number;</li>
+          <li>Whether you have joined the Hunt; and</li>
+          <li>Your most recently calculated distance from the current target.</li>
+        </ul>
+
+        <p>
+          The system is designed to minimize retention of personal information.
+        </p>
+
+        <p>
+          When you text <strong>STOP</strong>, the Hunt deletes the game state
+          associated with your phone number and stops sending Hunt responses,
+          subject to any records that telecommunications or infrastructure
+          providers are independently required to maintain.
+        </p>
+
+        <h2>How We Use Information</h2>
+
+        <p>Information received through the Hunt is used only to:</p>
+
+        <ul>
+          <li>Operate the Hunt;</li>
+          <li>Respond to your messages;</li>
+          <li>Determine your progress in location-based Hunt activities;</li>
+          <li>Maintain your participation and opt-in/opt-out status; and</li>
+          <li>Diagnose technical problems and maintain the service.</li>
+        </ul>
+
+        <p>Participant information is not used for advertising or marketing.</p>
+
+        <h2>Sharing of Information</h2>
+
+        <p>
+          We do <strong>not sell, rent, or share participant information with third
+          parties for advertising, marketing, data brokerage, or other unrelated
+          purposes.</strong>
+        </p>
+
+        <p>
+          The Hunt uses service providers, including telecommunications and
+          internet infrastructure providers, to transmit messages and operate
+          the service. These providers necessarily process some information in
+          order to provide their services.
+        </p>
+
+        <p>
+          For example, an SMS provider must process your phone number and
+          messages in order to deliver them, and an internet hosting provider
+          processes network requests required to operate the Hunt.
+        </p>
+
+        <p>Information may also be disclosed if required by law.</p>
+
+        <h2>SMS Communications</h2>
+
+        <p>Participation is voluntary. You may text <strong>JOIN</strong> to participate.</p>
+
+        <p>
+          Message frequency varies depending on how often you interact with the
+          Hunt. Message and data rates may apply.
+        </p>
+
+        <p>Text <strong>HELP</strong> for instructions or assistance.</p>
+
+        <p>
+          Text <strong>STOP</strong> at any time to stop receiving Hunt messages.
+          You may need to text <strong>START</strong> if you later wish to re-enable
+          SMS messages.
+        </p>
+
+        <h2>Security and Data Minimization</h2>
+
+        <p>The Hunt is designed around data minimization. In particular:</p>
+
+        <ul>
+          <li>It does not continuously track participants;</li>
+          <li>Location is provided only when a participant explicitly sends it;</li>
+          <li>The Hunt does not retain a history of submitted locations;</li>
+          <li>
+            Submitted latitude and longitude are not stored as participant game
+            state; and
+          </li>
+          <li>
+            Only the minimum state needed to provide the Hunt experience is
+            retained.
+          </li>
+        </ul>
+
+        <p>
+          Reasonable technical measures are used to protect the information
+          processed by the service.
+        </p>
+
+        <h2>Children's Privacy</h2>
+
+        <p>
+          The Hunt may be played by families, but the SMS service is not intended
+          to collect personal information from children independently. Children
+          should participate using a parent or guardian's phone and with their
+          supervision.
+        </p>
+
+        <h2>Changes to This Policy</h2>
+
+        <p>
+          This policy may be updated if the Hunt or the technologies used to
+          provide it change. The current version will be posted on this page.
+        </p>
+
+        <h2>Contact</h2>
+
+        <p>
+          Questions about this Privacy Policy or the Hunt can be directed to:
+        </p>
+
+        <address>
+          <strong>Ron Keesing</strong><br />
+          <strong><a href="mailto:ron@keesingai.com">ron@keesingai.com</a></strong>
+        </address>
+      </div>
+    </article>
+  </main>
+</MainLayout>
+
+<style>
+  .policy-page {
+    max-width: 920px;
+    padding-top: clamp(3.5rem, 6vw, 5.5rem);
+    padding-bottom: clamp(5rem, 9vw, 8rem);
+  }
+
+  .policy-header {
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .policy-header h1 {
+    max-width: 820px;
+    margin: 0 0 1.25rem;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    font-weight: 500;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  .last-updated {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  .policy-content {
+    max-width: 780px;
+    padding-top: clamp(2rem, 4vw, 3rem);
+    color: var(--text);
+    font-size: clamp(1rem, 1.35vw, 1.1rem);
+    line-height: 1.75;
+  }
+
+  .policy-content h2 {
+    margin: clamp(2.5rem, 5vw, 3.75rem) 0 1rem;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(1.65rem, 3vw, 2.25rem);
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .policy-content p {
+    margin: 0 0 1.25rem;
+  }
+
+  .policy-content ul {
+    margin: 0 0 1.5rem;
+    padding-left: 1.4rem;
+  }
+
+  .policy-content li + li {
+    margin-top: 0.45rem;
+  }
+
+  .policy-content strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .policy-content address {
+    font-style: normal;
+    line-height: 1.7;
+  }
+
+  .policy-content a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+
+  .policy-content a:hover,
+  .policy-content a:focus-visible {
+    color: var(--ink);
+  }
+</style>
