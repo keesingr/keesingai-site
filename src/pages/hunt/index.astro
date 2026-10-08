@@ -1,0 +1,202 @@
+---
+import "../../styles/global.css";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Keesing Puzzle Hunt — Geolocation Clue</title>
+    <meta
+      name="description"
+      content="Get started with the Keesing Puzzle Hunt geolocation clue by texting JOIN."
+    />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <main class="hunt-page">
+      <article class="hunt-card">
+        <p class="eyebrow">Keesing Puzzle Hunt</p>
+
+        <h1>Welcome to the geolocation clue.</h1>
+
+        <p class="introduction">
+          Ready to begin? Text <strong>JOIN</strong> to the number below to get
+          started.
+        </p>
+
+        <a
+          class="join-action"
+          href="sms:+12403639365?body=JOIN"
+          aria-label="Text JOIN to 240-363-9365"
+        >
+          <span class="join-label">Text JOIN to</span>
+          <span class="phone-number">(240) 363-9365</span>
+        </a>
+
+        <p class="sms-notice">
+          This Hunt uses an SMS text-messaging service. Message and data rates
+          may apply.
+        </p>
+
+        <div class="legal-links" aria-label="Puzzle Hunt policies">
+          <p>
+            By participating, you agree to the{" "}
+            <a href="/hunt/terms/">Terms and Conditions</a> and acknowledge the
+            {" "}
+            <a href="/hunt/privacy/">Privacy Policy</a>.
+          </p>
+        </div>
+      </article>
+    </main>
+  </body>
+</html>
+
+<style>
+  .hunt-page {
+    display: grid;
+    min-height: 100vh;
+    padding: clamp(1.25rem, 5vw, 4rem);
+    place-items: center;
+  }
+
+  .hunt-card {
+    width: min(100%, 760px);
+    padding: clamp(2rem, 6vw, 4.5rem);
+    border: 1px solid var(--line);
+    background: var(--white);
+    box-shadow: 0 24px 70px rgb(1 36 95 / 0.09);
+  }
+
+  .eyebrow {
+    margin: 0 0 1.25rem;
+    color: var(--accent);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    max-width: 650px;
+    margin: 0;
+    color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 7vw, 5rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  .introduction {
+    max-width: 620px;
+    margin: clamp(1.75rem, 4vw, 2.5rem) 0 0;
+    color: var(--text);
+    font-size: clamp(1.1rem, 2.4vw, 1.35rem);
+    line-height: 1.65;
+  }
+
+  .introduction strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .join-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.15rem;
+    margin-top: clamp(2rem, 5vw, 3rem);
+    padding: 1.15rem 1.4rem 1.25rem;
+    border: 2px solid var(--navy);
+    color: var(--white);
+    background: var(--navy);
+    transition:
+      background-color 160ms ease,
+      border-color 160ms ease,
+      transform 160ms ease;
+  }
+
+  .join-action:hover,
+  .join-action:focus-visible {
+    border-color: var(--accent);
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .join-action:focus-visible {
+    outline: 3px solid rgb(44 131 197 / 0.3);
+    outline-offset: 4px;
+  }
+
+  .join-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+  }
+
+  .phone-number {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 5vw, 2.75rem);
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .sms-notice {
+    margin: 1rem 0 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .legal-links {
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .legal-links p {
+    margin: 0;
+  }
+
+  .legal-links a {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
+
+  .legal-links a:hover,
+  .legal-links a:focus-visible {
+    color: var(--ink);
+  }
+
+  @media (max-width: 520px) {
+    .hunt-page {
+      padding: 0;
+      place-items: start stretch;
+    }
+
+    .hunt-card {
+      min-height: 100vh;
+      border: 0;
+      box-shadow: none;
+    }
+  }
+</style>
