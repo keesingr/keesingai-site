@@ -1,13 +1,31 @@
 ---
-import Header from "../../components/Header.astro";
-import MainLayout from "../../layouts/MainLayout.astro";
+import "../../styles/global.css";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
-<MainLayout
-  title="Privacy Policy — Keesing Puzzle Hunt"
-  description="Privacy policy for the Keesing Puzzle Hunt SMS service."
->
-  <Header />
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy Policy — Keesing Puzzle Hunt</title>
+    <meta
+      name="description"
+      content="Privacy policy for the Keesing Puzzle Hunt SMS service."
+    />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
 
   <main>
     <article class="policy-page site-container">
@@ -204,8 +222,9 @@ import MainLayout from "../../layouts/MainLayout.astro";
         </address>
       </div>
     </article>
-  </main>
-</MainLayout>
+    </main>
+  </body>
+</html>
 
 <style>
   .policy-page {
