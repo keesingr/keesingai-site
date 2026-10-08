@@ -9,10 +9,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Keesing Puzzle Hunt — Geolocation Clue</title>
+    <title>Ron Keesing Puzzle Hunt — Geolocation Clue</title>
     <meta
       name="description"
-      content="Get started with the Keesing Puzzle Hunt geolocation clue by texting JOIN."
+      content="Get started with the Ron Keesing Puzzle Hunt geolocation clue by texting JOIN."
     />
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -28,13 +28,19 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <body>
     <main class="hunt-page">
       <article class="hunt-card">
-        <p class="eyebrow">Keesing Puzzle Hunt</p>
+        <p class="eyebrow">Ron Keesing Puzzle Hunt</p>
 
         <h1>Welcome to the geolocation clue.</h1>
 
         <p class="introduction">
           Ready to begin? Text <strong>JOIN</strong> to the number below to get
           started.
+        </p>
+
+        <p class="consent-disclosure">
+          By texting JOIN, you agree to receive automated SMS messages from Ron
+          Keesing Puzzle Hunt. Message frequency varies. Message and data rates
+          may apply. Reply HELP for help or STOP to opt out.
         </p>
 
         <a
@@ -45,11 +51,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
           <span class="join-label">Text JOIN to</span>
           <span class="phone-number">(240) 363-9365</span>
         </a>
-
-        <p class="sms-notice">
-          This Hunt uses an SMS text-messaging service. Message and data rates
-          may apply.
-        </p>
 
         <div class="legal-links" aria-label="Puzzle Hunt policies">
           <p>
@@ -118,7 +119,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     flex-direction: column;
     align-items: flex-start;
     gap: 0.15rem;
-    margin-top: clamp(2rem, 5vw, 3rem);
+    margin-top: 1.25rem;
     padding: 1.15rem 1.4rem 1.25rem;
     border: 2px solid var(--navy);
     color: var(--white);
@@ -155,9 +156,12 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     line-height: 1.1;
   }
 
-  .sms-notice {
-    margin: 1rem 0 0;
+  .consent-disclosure {
+    margin: 1.5rem 0 0;
+    padding: 1rem 1.1rem;
+    border-left: 3px solid var(--accent);
     color: var(--muted);
+    background: rgb(44 131 197 / 0.08);
     font-size: 0.9rem;
     line-height: 1.6;
   }
