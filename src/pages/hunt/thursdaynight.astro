@@ -1,0 +1,206 @@
+---
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Summer 2026 | Community Calendar</title>
+    <link rel="canonical" href={canonicalURL} />
+    <style is:global>
+      :root {
+        color: #172b36;
+        background: #f5f7f5;
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      main {
+        max-width: 620px;
+        margin: auto;
+        padding: 20px 12px 36px;
+      }
+
+      .month {
+        margin: 0 0 18px;
+        padding: 13px 10px;
+        border: 1px solid #dce5e1;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 3px 12px #172b3610;
+      }
+
+      .month h2 {
+        margin: 2px 4px 12px;
+        font-size: 1.18rem;
+      }
+
+      .days {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 4px;
+      }
+
+      .weekday {
+        padding: 3px 0 6px;
+        color: #667980;
+        font-size: 0.72rem;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      .day {
+        min-height: 47px;
+        padding: 5px 3px;
+        overflow-wrap: anywhere;
+        border-radius: 7px;
+        background: #f8faf9;
+        font-size: 0.78rem;
+      }
+
+      .day.empty {
+        background: transparent;
+      }
+
+      .day.event {
+        border: 1px solid #94c3b3;
+        background: #e0f0ea;
+      }
+
+      .day.movie {
+        border-color: #e0b78a;
+        background: #f7e9d8;
+      }
+
+      .date {
+        display: block;
+        font-weight: 700;
+      }
+
+      .event-label {
+        display: block;
+        margin-top: 3px;
+        font-size: 0.64rem;
+        font-weight: 600;
+        line-height: 1.15;
+      }
+
+      .legend {
+        margin: 14px 4px;
+        color: #52636b;
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 380px) {
+        main {
+          padding: 12px 7px;
+        }
+
+        .month {
+          padding: 10px 5px;
+        }
+
+        .days {
+          gap: 2px;
+        }
+
+        .day {
+          min-height: 43px;
+          padding: 4px 2px;
+        }
+
+        .event-label {
+          font-size: 0.59rem;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <div id="calendars"></div>
+      <p class="legend">
+        Green: Summer Concert Series · Gold: Movie Under the Stars
+      </p>
+    </main>
+
+    <script is:inline>
+      const events = {
+        "2026-06-18": ["The Pack Drumline", "event"],
+        "2026-06-25": ["Bennie and the Jets", "event"],
+        "2026-07-02": ["Still Surfin’", "event"],
+        "2026-07-09": ["One Hit Wonderers", "event"],
+        "2026-07-16": ["EU", "event"],
+        "2026-07-23": ["Uptown", "event"],
+        "2026-07-30": ["Koo Koo", "event"],
+        "2026-09-25": ["Monsters, Inc.", "movie"],
+      };
+
+      const host = document.getElementById("calendars");
+
+      for (const month of [5, 6, 8]) {
+        const first = new Date(2026, month, 1);
+        const last = new Date(2026, month + 1, 0).getDate();
+        const section = document.createElement("section");
+        section.className = "month";
+
+        const heading = document.createElement("h2");
+        heading.textContent = first.toLocaleDateString("en-US", {
+          month: "long",
+          year: "numeric",
+        });
+        section.appendChild(heading);
+
+        const grid = document.createElement("div");
+        grid.className = "days";
+
+        for (const weekday of ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]) {
+          const element = document.createElement("div");
+          element.className = "weekday";
+          element.textContent = weekday;
+          grid.appendChild(element);
+        }
+
+        for (let index = 0; index < first.getDay(); index += 1) {
+          const element = document.createElement("div");
+          element.className = "day empty";
+          grid.appendChild(element);
+        }
+
+        for (let day = 1; day <= last; day += 1) {
+          const key = `2026-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+          const event = events[key];
+          const element = document.createElement("div");
+          element.className = `day${event ? ` event ${event[1]}` : ""}`;
+
+          const date = document.createElement("span");
+          date.className = "date";
+          date.textContent = day;
+          element.appendChild(date);
+
+          if (event) {
+            const label = document.createElement("span");
+            label.className = "event-label";
+            label.textContent = event[0];
+            element.appendChild(label);
+            element.setAttribute("aria-label", `${key}: ${event[0]}`);
+          }
+
+          grid.appendChild(element);
+        }
+
+        section.appendChild(grid);
+        host.appendChild(section);
+      }
+    </script>
+  </body>
+</html>
