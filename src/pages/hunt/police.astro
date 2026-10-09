@@ -1,0 +1,460 @@
+---
+import PoliceAnswerBoxes from "../../components/hunt/PoliceAnswerBoxes.astro";
+import { destination, extractions, reports } from "../../data/police-puzzle.js";
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+let destinationPosition = 0;
+const destinationWords = destination.words.map((word) =>
+  [...word].map(() => ({ position: destinationPosition++ })),
+);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#15283a" />
+    <title>McLean Police Department — Unsolved Incident Files</title>
+    <meta name="description" content="Six unusual fictional incidents remain unresolved. Review the reports and reveal the next puzzle-hunt destination." />
+    <link rel="canonical" href={canonicalURL} />
+  </head>
+  <body>
+    <a class="skip-link" href="#incident-files">Skip to incident files</a>
+
+    <header class="page-header">
+      <div class="badge" aria-hidden="true">MPD</div>
+      <div>
+        <p class="department-name">McLEAN POLICE DEPARTMENT</p>
+        <h1>Unsolved Incident Files</h1>
+      </div>
+    </header>
+
+    <main id="incident-files">
+      <section class="instructions" aria-labelledby="instructions-title">
+        <div>
+          <p class="eyebrow" id="instructions-title">Case briefing</p>
+          <p>Six unusual incidents remain unresolved. Review the reports and fill in the missing names or statements. Selected letters from your answers will reveal your next destination.</p>
+        </div>
+        <div class="case-progress" aria-live="polite"><span id="solved-count">0</span> of 6 reports solved</div>
+      </section>
+
+      <div class="report-stack">
+        {reports.map((report, reportIndex) => (
+          <article class="incident-report" data-report={report.id} aria-labelledby={`report-${report.id}`}>
+            <header class="report-header">
+              <div class="report-letterhead">
+                <span class="report-seal" aria-hidden="true">MPD</span>
+                <div>
+                  <p>McLEAN POLICE DEPARTMENT</p>
+                  <h2 id={`report-${report.id}`}>INCIDENT REPORT #{report.reportNumber}</h2>
+                </div>
+              </div>
+              <span class="status-stamp" aria-hidden="true">UNRESOLVED</span>
+            </header>
+
+            <dl class="metadata">
+              <div><dt>Date</dt><dd>{report.date}</dd></div>
+              <div><dt>Time</dt><dd>{report.time}</dd></div>
+              <div><dt>Location</dt><dd>{report.location}</dd></div>
+              <div><dt>Reporting Officer</dt><dd>{report.officer}</dd></div>
+              <div class="wide"><dt>Incident Type</dt><dd>{report.incidentType}</dd></div>
+            </dl>
+
+            {report.answerPlacement.type === "field" && (
+              <div class="answer-field">
+                <span class="field-label">{report.answerPlacement.label}:</span>
+                <PoliceAnswerBoxes report={report} />
+              </div>
+            )}
+
+            {report.extraFields?.map((field) => (
+              <p class="plain-field"><strong>{field.label}:</strong> {field.value}</p>
+            ))}
+
+            <section class="report-section">
+              <h3>Narrative</h3>
+              {report.narrative.map((paragraph) => (
+                typeof paragraph === "string" ? (
+                  <p>{paragraph}</p>
+                ) : (
+                  <p class="embedded-answer">
+                    {paragraph.before}<PoliceAnswerBoxes report={report} inline />{paragraph.after}
+                  </p>
+                )
+              ))}
+            </section>
+
+            <section class="disposition">
+              <h3>Disposition</h3>
+              {typeof report.disposition === "string" ? (
+                <p>{report.disposition}</p>
+              ) : (
+                <p class="embedded-answer">
+                  {report.disposition.before}<PoliceAnswerBoxes report={report} inline />{report.disposition.after}
+                </p>
+              )}
+            </section>
+            <p class="file-number" aria-hidden="true">FILE {String(reportIndex + 1).padStart(2, "0")} / 06</p>
+          </article>
+        ))}
+      </div>
+
+      <button class="reset-button" id="reset-puzzle" type="button">Reset Puzzle</button>
+      <p class="screen-reader-only" id="answer-announcer" aria-live="polite"></p>
+    </main>
+
+    <aside class="destination-panel" aria-labelledby="destination-title">
+      <div class="destination-heading">
+        <div>
+          <p class="eyebrow">Case extraction</p>
+          <h2 id="destination-title">NEXT DESTINATION</h2>
+        </div>
+        <span class="panel-progress" id="panel-progress">0 / 6</span>
+      </div>
+      <div class="destination-words" aria-label="Next destination">
+        {destinationWords.map((word) => (
+          <span class="destination-word">
+            {word.map(({ position }) => (
+              <span class="destination-cell" data-destination-position={position} aria-label={`Destination letter ${position + 1}`}>
+                <span aria-hidden="true">&nbsp;</span>
+              </span>
+            ))}
+          </span>
+        ))}
+      </div>
+      <p class="completion-message" id="completion-message" hidden>All incident files resolved. Proceed to the destination shown below.</p>
+    </aside>
+
+    <script define:vars={{ reports, extractions }}>
+      const storageKey = "keesing-hunt-police-v1";
+      const reportById = new Map(reports.map((report) => [report.id, report]));
+      const solvedReports = new Set();
+
+      const normalize = (value) => value.toUpperCase().replace(/[^A-Z]/g, "");
+      const inputsFor = (reportId) => [...document.querySelectorAll(`input[data-report-id="${reportId}"]`)];
+      const valueFor = (reportId) => inputsFor(reportId).map((input) => input.value).join("");
+
+      const saveState = () => {
+        const answers = Object.fromEntries(reports.map((report) => [report.id, valueFor(report.id)]));
+        localStorage.setItem(storageKey, JSON.stringify({ answers }));
+      };
+
+      const updateDestination = () => {
+        document.querySelectorAll("[data-destination-position]").forEach((cell) => {
+          const position = Number(cell.dataset.destinationPosition);
+          const mapping = extractions.find((entry) => entry.destinationPosition === position);
+          const revealed = mapping && solvedReports.has(mapping.reportId);
+          cell.classList.toggle("revealed", Boolean(revealed));
+          cell.querySelector("span").textContent = revealed ? mapping.letter : "\u00a0";
+        });
+      };
+
+      const validateReport = (reportId, announce = true) => {
+        const report = reportById.get(reportId);
+        const article = document.querySelector(`[data-report="${reportId}"]`);
+        const inputs = inputsFor(reportId);
+        const complete = inputs.every((input) => input.value.length === 1);
+        const correct = complete && valueFor(reportId) === normalize(report.answer);
+        const wasSolved = solvedReports.has(reportId);
+
+        if (correct) solvedReports.add(reportId);
+        else solvedReports.delete(reportId);
+
+        article.classList.toggle("solved", correct);
+        article.querySelector(".status-stamp").textContent = correct ? "RESOLVED" : "UNRESOLVED";
+        inputs.forEach((input) => input.setAttribute("aria-invalid", complete && !correct ? "true" : "false"));
+
+        if (announce && correct && !wasSolved) {
+          document.getElementById("answer-announcer").textContent = `Incident report ${report.reportNumber} resolved.`;
+        }
+
+        const count = solvedReports.size;
+        document.getElementById("solved-count").textContent = count;
+        document.getElementById("panel-progress").textContent = `${count} / 6`;
+        document.getElementById("completion-message").hidden = count !== reports.length;
+        updateDestination();
+      };
+
+      const processEntry = (input, text) => {
+        const reportInputs = inputsFor(input.dataset.reportId);
+        const start = reportInputs.indexOf(input);
+        const letters = normalize(text);
+        if (!letters) return;
+
+        letters.split("").forEach((letter, offset) => {
+          if (reportInputs[start + offset]) reportInputs[start + offset].value = letter;
+        });
+
+        const nextIndex = Math.min(start + letters.length, reportInputs.length - 1);
+        const next = reportInputs[nextIndex];
+        if (start + letters.length < reportInputs.length) reportInputs[start + letters.length].focus();
+        else next.focus();
+
+        validateReport(input.dataset.reportId);
+        saveState();
+      };
+
+      document.querySelectorAll(".letter-input").forEach((input) => {
+        input.addEventListener("input", (event) => {
+          const letters = normalize(event.target.value);
+          event.target.value = letters.slice(-1);
+          if (event.target.value) {
+            const reportInputs = inputsFor(event.target.dataset.reportId);
+            const index = reportInputs.indexOf(event.target);
+            if (reportInputs[index + 1]) reportInputs[index + 1].focus();
+          }
+          validateReport(event.target.dataset.reportId);
+          saveState();
+        });
+
+        input.addEventListener("keydown", (event) => {
+          if (event.key !== "Backspace") return;
+          const reportInputs = inputsFor(event.currentTarget.dataset.reportId);
+          const index = reportInputs.indexOf(event.currentTarget);
+          if (event.currentTarget.value) {
+            event.preventDefault();
+            event.currentTarget.value = "";
+          } else if (reportInputs[index - 1]) {
+            event.preventDefault();
+            reportInputs[index - 1].focus();
+          }
+          validateReport(event.currentTarget.dataset.reportId);
+          saveState();
+        });
+
+        input.addEventListener("paste", (event) => {
+          event.preventDefault();
+          processEntry(event.currentTarget, event.clipboardData.getData("text"));
+        });
+      });
+
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) ?? "{}");
+        for (const report of reports) {
+          const letters = normalize(saved.answers?.[report.id] ?? "");
+          inputsFor(report.id).forEach((input, index) => { input.value = letters[index] ?? ""; });
+          validateReport(report.id, false);
+        }
+      } catch {
+        reports.forEach((report) => validateReport(report.id, false));
+      }
+      document.getElementById("reset-puzzle").addEventListener("click", () => {
+        if (!window.confirm("Reset all answers and destination progress?")) return;
+        localStorage.removeItem(storageKey);
+        document.querySelectorAll(".letter-input").forEach((input) => { input.value = ""; });
+        solvedReports.clear();
+        reports.forEach((report) => validateReport(report.id, false));
+        document.querySelector(".letter-input")?.focus();
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    color: #18222b;
+    background: #d9dde0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-synthesis: none;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    min-width: 320px;
+    margin: 0;
+    padding-bottom: calc(13.5rem + env(safe-area-inset-bottom));
+    background:
+      linear-gradient(#27384a0a 1px, transparent 1px),
+      #d9dde0;
+    background-size: 100% 28px;
+  }
+
+  button, input { font: inherit; }
+
+  .skip-link {
+    position: fixed;
+    z-index: 100;
+    top: 0.5rem;
+    left: 0.5rem;
+    padding: 0.65rem 0.9rem;
+    color: white;
+    background: #102b43;
+    transform: translateY(-150%);
+  }
+  .skip-link:focus { transform: translateY(0); }
+
+  .page-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 1rem 1.75rem;
+    color: #f7f4ec;
+    background: #15283a;
+    border-bottom: 5px solid #9f873e;
+    text-align: left;
+  }
+
+  .badge, .report-seal {
+    display: grid;
+    place-items: center;
+    flex: 0 0 auto;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+  .badge { width: 4rem; height: 4rem; color: #d5c078; }
+  .department-name { margin: 0; font: 700 clamp(0.82rem, 3vw, 1rem)/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.09em; }
+  .page-header h1 { margin: 0.25rem 0 0; font-size: clamp(1.45rem, 5vw, 2.1rem); font-weight: 500; font-style: italic; }
+
+  main { width: min(100% - 1rem, 900px); margin: 1.2rem auto 0; }
+
+  .instructions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.15rem;
+    padding: 1rem 1.1rem;
+    border-left: 4px solid #9f873e;
+    background: #eef0ef;
+    box-shadow: 0 2px 9px #10203019;
+  }
+  .instructions p { max-width: 62ch; margin: 0.25rem 0 0; line-height: 1.45; }
+  .eyebrow { margin: 0 !important; color: #596674; font: 800 0.68rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.13em; text-transform: uppercase; }
+  .case-progress, .panel-progress { white-space: nowrap; font: 700 0.76rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  .report-stack { display: grid; gap: 1.35rem; }
+  .incident-report {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1rem, 4vw, 2rem);
+    border: 1px solid #a8a49a;
+    border-radius: 2px;
+    background: #faf8f0;
+    box-shadow: 0 5px 17px #1a273226;
+  }
+  .incident-report::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.28;
+    background-image: radial-gradient(#5b5446 0.35px, transparent 0.4px);
+    background-size: 5px 5px;
+  }
+  .incident-report.solved { border-color: #567365; box-shadow: 0 5px 17px #1a273226, inset 0 0 0 2px #567365; }
+  .report-header { position: relative; display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; padding-bottom: 0.8rem; border-bottom: 3px double #34414b; }
+  .report-letterhead { display: flex; align-items: center; gap: 0.7rem; }
+  .report-seal { width: 2.8rem; height: 2.8rem; color: #24394b; font-size: 0.72rem; }
+  .report-letterhead p { margin: 0; font: 800 0.7rem/1.25 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.08em; }
+  .report-letterhead h2 { margin: 0.2rem 0 0; font: 700 clamp(0.78rem, 3vw, 1rem)/1.25 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .status-stamp { padding: 0.32rem 0.42rem; border: 2px solid #8b4039; color: #8b4039; font: 800 0.63rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.08em; transform: rotate(-2deg); }
+  .solved .status-stamp { border-color: #426855; color: #426855; transform: rotate(1deg); }
+
+  .metadata { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 1rem 0; border-top: 1px solid #979990; border-left: 1px solid #979990; font: 0.72rem/1.35 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .metadata div { display: grid; grid-template-columns: minmax(6.5rem, 40%) 1fr; border-right: 1px solid #979990; border-bottom: 1px solid #979990; }
+  .metadata .wide { grid-column: 1 / -1; }
+  .metadata dt, .metadata dd { margin: 0; padding: 0.42rem 0.5rem; }
+  .metadata dt { background: #e4e3dc; font-weight: 800; text-transform: uppercase; }
+
+  .answer-field, .plain-field { position: relative; margin: 1.1rem 0; font-size: 0.88rem; }
+  .answer-field { display: flex; align-items: flex-start; flex-wrap: wrap; gap: 0.65rem; }
+  .field-label, .plain-field strong { font: 800 0.73rem/1.8 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.04em; text-transform: uppercase; }
+  .report-section, .disposition { position: relative; }
+  .report-section h3, .disposition h3 { margin: 1.15rem 0 0.55rem; padding-bottom: 0.2rem; border-bottom: 1px solid #8b8e88; font: 800 0.72rem/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.08em; text-transform: uppercase; }
+  .report-section p, .disposition p { margin: 0.65rem 0; font-size: clamp(0.98rem, 2.8vw, 1.08rem); line-height: 1.6; }
+  .disposition { margin-top: 1.15rem; padding: 0.1rem 0.75rem 0.25rem; border-left: 3px solid #6d7780; background: #eeede7; }
+  .file-number { position: relative; margin: 1.2rem 0 -0.4rem; color: #6a6d6b; font: 0.65rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; text-align: right; }
+
+  .answer-boxes { display: inline-flex; flex-wrap: wrap; align-items: flex-end; gap: 0.48rem; max-width: 100%; vertical-align: middle; }
+  .answer-boxes.inline { margin: 0.35rem 0.12rem 0.08rem; }
+  .answer-word { display: inline-flex; gap: 0.16rem; }
+  .answer-cell { position: relative; display: inline-block; padding-top: 0.82rem; }
+  .letter-input {
+    display: block;
+    width: clamp(1.52rem, 6.2vw, 2rem);
+    height: clamp(2rem, 8vw, 2.55rem);
+    padding: 0;
+    border: 1px solid #56616a;
+    border-bottom-width: 2px;
+    border-radius: 2px;
+    color: #172838;
+    background: #fffef9;
+    font: 800 clamp(0.9rem, 4vw, 1.18rem)/1 ui-monospace, SFMono-Regular, Menlo, monospace;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  .extracted .letter-input { border-bottom: 3px solid #9f873e; background: #fffceb; }
+  .letter-input:focus-visible { outline: 3px solid #3b7298; outline-offset: 2px; }
+  .letter-input[aria-invalid="true"] { border-style: dashed; }
+  .solved .letter-input { border-color: #426855; background: #eef6ef; }
+  .position-marker { position: absolute; top: 0; left: 50%; color: #6b581b; font: 700 0.57rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; transform: translateX(-50%); white-space: nowrap; }
+
+  .reset-button { display: block; margin: 1.4rem auto 0; padding: 0.65rem 0.9rem; border: 1px solid #5d6973; border-radius: 3px; color: #263746; background: #f4f3ee; font: 700 0.78rem/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .reset-button:hover { background: white; }
+  .reset-button:focus-visible { outline: 3px solid #3b7298; outline-offset: 3px; }
+
+  .destination-panel {
+    position: fixed;
+    z-index: 50;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0.7rem max(0.65rem, env(safe-area-inset-right)) calc(0.7rem + env(safe-area-inset-bottom)) max(0.65rem, env(safe-area-inset-left));
+    color: #f7f4ec;
+    background: #15283af5;
+    border-top: 4px solid #9f873e;
+    box-shadow: 0 -6px 20px #111b2552;
+    backdrop-filter: blur(8px);
+  }
+  .destination-heading { display: flex; align-items: flex-end; justify-content: space-between; width: min(100%, 900px); margin: 0 auto 0.5rem; }
+  .destination-heading .eyebrow { color: #c2cbd2; }
+  .destination-heading h2 { margin: 0.08rem 0 0; font: 800 0.86rem/1.1 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.12em; }
+  .panel-progress { color: #d5c078; }
+  .destination-words { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.42rem 0.75rem; width: min(100%, 900px); margin: 0 auto; }
+  .destination-word { display: inline-flex; gap: 0.1rem; }
+  .destination-cell { display: grid; place-items: center; width: clamp(0.86rem, 3.4vw, 1.45rem); height: clamp(1.32rem, 5vw, 1.9rem); border: 1px solid #93a1ad; border-bottom: 2px solid #c7d0d8; background: #0e1d2a; font: 800 clamp(0.7rem, 2.8vw, 1rem)/1 ui-monospace, SFMono-Regular, Menlo, monospace; }
+  .destination-cell.revealed { color: #192530; background: #f4efda; border-color: #d5c078; }
+  .completion-message { margin: 0.5rem auto 0; color: #f0df9f; font-size: 0.78rem; text-align: center; }
+  .screen-reader-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+  @media (max-width: 620px) {
+    body { padding-bottom: calc(15rem + env(safe-area-inset-bottom)); }
+    .page-header { justify-content: flex-start; padding-top: 1.3rem; }
+    .badge { width: 3.2rem; height: 3.2rem; }
+    .instructions { align-items: flex-start; flex-direction: column; }
+    .report-header { align-items: stretch; flex-direction: column; }
+    .status-stamp { align-self: flex-start; }
+    .metadata { grid-template-columns: 1fr; }
+    .metadata .wide { grid-column: auto; }
+    .metadata div { grid-template-columns: 7.3rem 1fr; }
+  }
+
+  @media (max-width: 370px) {
+    main { width: calc(100% - 0.5rem); }
+    .incident-report { padding: 0.8rem 0.62rem; }
+    .report-seal { display: none; }
+    .metadata div { grid-template-columns: 6.8rem 1fr; }
+    .destination-panel { padding-right: 0.35rem; padding-left: 0.35rem; }
+    .destination-words { column-gap: 0.46rem; row-gap: 0.35rem; }
+    .destination-cell { width: 0.84rem; }
+  }
+
+  @media (max-height: 520px) and (orientation: landscape) {
+    body { padding-bottom: 9.5rem; }
+    .destination-panel { padding-top: 0.38rem; padding-bottom: calc(0.38rem + env(safe-area-inset-bottom)); }
+    .destination-heading { margin-bottom: 0.28rem; }
+    .destination-heading .eyebrow { display: none; }
+    .destination-cell { height: 1.25rem; }
+    .completion-message { margin-top: 0.25rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+  }
+</style>

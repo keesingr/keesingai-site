@@ -1,0 +1,41 @@
+---
+import { extractions } from "../../data/police-puzzle.js";
+
+const { report, inline = false } = Astro.props;
+let sourcePosition = 0;
+const words = report.answer.split(" ").map((word) =>
+  [...word].map((letter) => {
+    const position = sourcePosition++;
+    const destinationPositions = extractions
+      .filter((entry) => entry.reportId === report.id && entry.sourcePosition === position)
+      .map((entry) => entry.destinationPosition + 1);
+    return { letter, position, destinationPositions };
+  }),
+);
+---
+
+<span class:list={["answer-boxes", { inline }]} data-answer-group={report.id} role="group" aria-label={`Missing answer for incident report ${report.reportNumber}`}>
+  {words.map((word, wordIndex) => (
+    <span class="answer-word">
+      {word.map(({ position, destinationPositions }) => (
+        <span class:list={["answer-cell", { extracted: destinationPositions.length > 0 }]}>
+          {destinationPositions.length > 0 && (
+            <span class="position-marker" aria-hidden="true">{destinationPositions.join(",")}</span>
+          )}
+          <input
+            class="letter-input"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+            maxlength="1"
+            data-report-id={report.id}
+            data-position={position}
+            aria-label={`${report.answerPlacement.label ?? "Answer"}, word ${wordIndex + 1}, letter ${position + 1}`}
+          />
+        </span>
+      ))}
+    </span>
+  ))}
+</span>
