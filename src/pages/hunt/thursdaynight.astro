@@ -76,11 +76,6 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         background: #e0f0ea;
       }
 
-      .day.movie {
-        border-color: #e0b78a;
-        background: #f7e9d8;
-      }
-
       .date {
         display: block;
         font-weight: 700;
@@ -94,10 +89,29 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         line-height: 1.15;
       }
 
-      .legend {
-        margin: 14px 4px;
-        color: #52636b;
-        font-size: 0.8rem;
+      .hint-button {
+        display: block;
+        width: fit-content;
+        margin: 24px auto 0;
+        padding: 10px 18px;
+        border: 1px solid #6d9f8f;
+        border-radius: 8px;
+        color: #173d32;
+        background: #e0f0ea;
+        font-size: 0.92rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .hint-button:hover,
+      .hint-button:focus-visible {
+        border-color: #173d32;
+        background: #cce6dc;
+      }
+
+      .hint-button:focus-visible {
+        outline: 3px solid #94c3b366;
+        outline-offset: 3px;
       }
 
       @media (max-width: 380px) {
@@ -128,9 +142,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
   <body>
     <main>
       <div id="calendars"></div>
-      <p class="legend">
-        Green: Summer Concert Series · Gold: Movie Under the Stars
-      </p>
+      <a class="hint-button" href="/hunt/thursdaynight/hint/">Give me a hint</a>
     </main>
 
     <script is:inline>
@@ -142,12 +154,11 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
         "2026-07-16": ["EU", "event"],
         "2026-07-23": ["Uptown", "event"],
         "2026-07-30": ["Koo Koo", "event"],
-        "2026-09-25": ["Monsters, Inc.", "movie"],
       };
 
       const host = document.getElementById("calendars");
 
-      for (const month of [5, 6, 8]) {
+      for (const month of [5, 6]) {
         const first = new Date(2026, month, 1);
         const last = new Date(2026, month + 1, 0).getDate();
         const section = document.createElement("section");
