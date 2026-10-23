@@ -1,5 +1,5 @@
 ---
-title: "Applying the 4A Methodology to Supplier Onboarding"
+title: "Applying the 4A Methodology"
 description: "How Analysis, Assistance, Augmentation, and selective Autonomy can create value in supplier onboarding while building trust and managing risk."
 type: "Post"
 order: 8
